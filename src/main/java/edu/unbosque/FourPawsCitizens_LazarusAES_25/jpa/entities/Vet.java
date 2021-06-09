@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Vet")
+@Table(name = "VetPOJO")
 @PrimaryKeyJoinColumn
 public class Vet extends UserApp{
 
@@ -30,7 +30,7 @@ public class Vet extends UserApp{
     }
 
     public Vet(String username, String password, String email,  Integer vet_id, String name, String address, String neighborhood) {
-        super(username, password, email, "Vet");
+        super(username, password, email, "VetPOJO");
         this.vet_id = vet_id;
         this.name = name;
         this.address = address;

@@ -1,33 +1,21 @@
-package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
+package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos;
 
-import javax.persistence.*;
 
-@Entity
-@Table(name = "VisitPOJO")
-public class Visit {
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Vet;
 
-    @Id
-    @Column(name = "visit_id")
-    private Integer visit;
+public class VisitPOJO {
 
-    @Column(name = "created_id")
-    private String created_id;
-
-    @Column(name = "type")
+    private Integer visit_id;
+    private String created_at;
     private String type;
-
-    @Column(name = "description")
     private String description;
-
-    @ManyToOne
-    @JoinColumn(name = "vet_id")
-    private Vet vet;
+    private Integer vet_id;
 
     public Visit(){
 
     }
 
-    public Visit(Integer visit, String created_id, String type, String description, Vet vet) {
+    public VisitPOJO(Integer visit, String created_id, String type, String description, Vet vet) {
         this.visit = visit;
         this.created_id = created_id;
         this.type = type;

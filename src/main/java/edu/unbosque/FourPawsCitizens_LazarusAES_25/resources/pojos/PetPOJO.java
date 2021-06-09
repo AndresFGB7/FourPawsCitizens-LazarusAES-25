@@ -1,53 +1,22 @@
-package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
+package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+public class PetPOJO {
 
-@Entity
-@Table(name = "PetPOJO")
-@NamedQueries({
-        @NamedQuery(name = "Pet.findByName",
-                query = "SELECT a FROM Pet a WHERE a.name = :name")
-
-})
-@PrimaryKeyJoinColumn
-public class Pet {
-    @Id
-    @Column(name = "pet_id", nullable = false)
     private Integer pet_id;
-
-    @Column(name = "microship", nullable = false,unique = true)
     private String microship;
-
-    @Column(name = "name", nullable = false)
     private String name;
-
-    @Column(name = "species", nullable = false)
     private String species;
-
-    @Column(name = "race", nullable = false)
     private String race;
-
-    @Column(name = "size", nullable = false)
     private String size;
-
-    @Column(name = "sex", nullable = false)
     private String sex;
-
-    @Column(name = "picture", nullable = false)
     private String picture;
-
-    @Column(name = "owner_id", nullable = false)
     private Integer owner_id;
 
-
-    public Pet(){
+    public PetPOJO(){
 
     }
 
-    public Pet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture, Integer owner_id) {
-
+    public PetPOJO(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture, Integer owner_id) {
         this.pet_id = pet_id;
         this.microship = microship;
         this.name = name;
@@ -130,5 +99,4 @@ public class Pet {
     public void setOwner_id(Integer owner_id) {
         this.owner_id = owner_id;
     }
-
 }

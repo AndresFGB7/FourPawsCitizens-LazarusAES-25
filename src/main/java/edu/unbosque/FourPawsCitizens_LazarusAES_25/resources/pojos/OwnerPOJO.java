@@ -2,12 +2,6 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos;
 
 public class OwnerPOJO {
 
-    private String username;
-
-    private String password;
-
-    private String email;
-
     private Long personId;
 
     private String name;
@@ -15,6 +9,12 @@ public class OwnerPOJO {
     private String address;
 
     private String neighborhood;
+
+    private String username;
+
+    private String password;
+
+    private String email;
 
     public OwnerPOJO() {
     }
