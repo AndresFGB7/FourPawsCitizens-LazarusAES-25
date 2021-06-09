@@ -23,16 +23,21 @@ public class Visit {
     @JoinColumn(name = "vet_id")
     private Vet vet;
 
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
+    private Pet pet;
+
     public Visit(){
 
     }
 
-    public Visit(Integer visit, String created_id, String type, String description, Vet vet) {
+    public Visit(Integer visit, String created_id, String type, String description, Vet vet, Pet pet) {
         this.visit = visit;
         this.created_id = created_id;
         this.type = type;
         this.description = description;
         this.vet = vet;
+        this.pet = pet;
     }
 
     public Integer getVisit() {
@@ -73,5 +78,13 @@ public class Visit {
 
     public void setVet(Vet vet) {
         this.vet = vet;
+    }
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
     }
 }
