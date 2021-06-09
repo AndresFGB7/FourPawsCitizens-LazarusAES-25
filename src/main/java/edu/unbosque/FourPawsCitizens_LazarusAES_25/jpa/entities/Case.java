@@ -3,12 +3,7 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "CasePOJO")
-@NamedQueries({
-        @NamedQuery(name = "Case.findById",
-                query = "SELECT a FROM Case a WHERE a.case_id = :name")
-
-})
+@Table(name = "Case")
 public class Case {
     @Id
     @Column(name = "case_id", nullable = false)
@@ -23,13 +18,16 @@ public class Case {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "pet_id", nullable = false)
-    private int pet_id;
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
+    private Pet pet_id;
+
 
     public Case(){
 
     }
-    public Case(int case_id, String created_at, String type, String description, int pet_id) {
+
+    public Case(int case_id, String created_at, String type, String description, Pet pet_id) {
         this.case_id = case_id;
         this.created_at = created_at;
         this.type = type;
@@ -69,11 +67,11 @@ public class Case {
         this.description = description;
     }
 
-    public int getPet_id() {
+    public Pet getPet_id() {
         return pet_id;
     }
 
-    public void setPet_id(int pet_id) {
+    public void setPet_id(Pet pet_id) {
         this.pet_id = pet_id;
     }
 }

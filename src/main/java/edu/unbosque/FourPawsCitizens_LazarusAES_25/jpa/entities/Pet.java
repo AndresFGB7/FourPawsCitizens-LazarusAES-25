@@ -5,13 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "PetPOJO")
-@NamedQueries({
-        @NamedQuery(name = "Pet.findByName",
-                query = "SELECT a FROM Pet a WHERE a.name = :name")
 
-})
 @PrimaryKeyJoinColumn
+@Table(name = "Pet")
 public class Pet {
     @Id
     @Column(name = "pet_id", nullable = false)
@@ -38,16 +34,21 @@ public class Pet {
     @Column(name = "picture", nullable = false)
     private String picture;
 
-    @Column(name = "owner_id", nullable = false)
-    private Integer owner_id;
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Owner owner_id;
 
+    @OneToMany(mappedBy = "pet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Case> cases = new ArrayList<>();
+
+    @OneToMany(mappedBy = "pet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Visit> visits = new ArrayList<>();
 
     public Pet(){
 
     }
 
-    public Pet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture, Integer owner_id) {
-
+    public Pet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture, Owner owner_id, List<Case> cases, List<Visit> visits) {
         this.pet_id = pet_id;
         this.microship = microship;
         this.name = name;
@@ -57,6 +58,8 @@ public class Pet {
         this.sex = sex;
         this.picture = picture;
         this.owner_id = owner_id;
+        this.cases = cases;
+        this.visits = visits;
     }
 
     public Integer getPet_id() {
@@ -123,12 +126,34 @@ public class Pet {
         this.picture = picture;
     }
 
-    public Integer getOwner_id() {
+    public Owner getOwner_id() {
         return owner_id;
     }
 
-    public void setOwner_id(Integer owner_id) {
+    public void setOwner_id(Owner owner_id) {
         this.owner_id = owner_id;
     }
 
+    public List<Case> getCases() {
+        return cases;
+    }
+
+    public void addCases(Case aCase) {
+        cases.add(aCase);
+        aCase.setPet_id(this);
+
+    }
+
+    public void setCases(List<Case> cases) {
+        this.cases = cases;
+    }
+
+    public List<Visit> getVisits() {
+        return visits;
+    }
+
+    public void addVisits(Visit visit) {
+        visits.add(visit);
+        visit.setPet(this);
+    }
 }

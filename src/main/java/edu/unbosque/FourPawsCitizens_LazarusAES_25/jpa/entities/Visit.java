@@ -8,10 +8,10 @@ public class Visit {
 
     @Id
     @Column(name = "visit_id")
-    private Integer visit;
+    private Integer visit_id;
 
-    @Column(name = "created_id")
-    private String created_id;
+    @Column(name = "created_at")
+    private String created_at;
 
     @Column(name = "type")
     private String type;
@@ -23,32 +23,37 @@ public class Visit {
     @JoinColumn(name = "vet_id")
     private Vet vet;
 
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
+    private Pet pet;
+
     public Visit(){
 
     }
 
-    public Visit(Integer visit, String created_id, String type, String description, Vet vet) {
-        this.visit = visit;
-        this.created_id = created_id;
+    public Visit(Integer visit_id, String created_id, String type, String description, Vet vet, Pet pet) {
+        this.visit_id = visit_id;
+        this.created_at = created_id;
         this.type = type;
         this.description = description;
         this.vet = vet;
+        this.pet = pet;
     }
 
-    public Integer getVisit() {
-        return visit;
+    public Integer getVisit_id() {
+        return visit_id;
     }
 
-    public void setVisit(Integer visit) {
-        this.visit = visit;
+    public void setVisit_id(Integer visit) {
+        this.visit_id = visit;
     }
 
-    public String getCreated_id() {
-        return created_id;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public void setCreated_id(String created_id) {
-        this.created_id = created_id;
+    public void setCreated_at(String created_id) {
+        this.created_at = created_id;
     }
 
     public String getType() {
@@ -73,5 +78,13 @@ public class Visit {
 
     public void setVet(Vet vet) {
         this.vet = vet;
+    }
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
     }
 }

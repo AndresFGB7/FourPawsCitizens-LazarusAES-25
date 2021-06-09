@@ -2,11 +2,15 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos;
 
 public class CasePOJO {
 
-    private int case_id;
+    private Integer case_id;
+
     private String created_at;
+
     private String type;
+
     private String description;
-    private int pet_id;
+
+    private Integer pet_id;
 
 
     public CasePOJO() {

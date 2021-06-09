@@ -3,22 +3,30 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos;
 public class PetPOJO {
 
     private Integer pet_id;
-    private String microship;
+
+    private String microchip;
+
     private String name;
+
     private String species;
+
     private String race;
+
     private String size;
+
     private String sex;
+
     private String picture;
+
     private Integer owner_id;
 
     public PetPOJO(){
 
     }
 
-    public PetPOJO(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture, Integer owner_id) {
+    public PetPOJO(Integer pet_id, String microchip, String name, String species, String race, String size, String sex, String picture, Integer owner_id) {
         this.pet_id = pet_id;
-        this.microship = microship;
+        this.microchip = microchip;
         this.name = name;
         this.species = species;
         this.race = race;
@@ -36,12 +44,12 @@ public class PetPOJO {
         this.pet_id = pet_id;
     }
 
-    public String getMicroship() {
-        return microship;
+    public String getMicrochip() {
+        return microchip;
     }
 
-    public void setMicroship(String microship) {
-        this.microship = microship;
+    public void setMicrochip(String microchip) {
+        this.microchip = microchip;
     }
 
     public String getName() {

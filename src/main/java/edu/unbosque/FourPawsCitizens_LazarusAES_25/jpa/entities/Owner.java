@@ -1,9 +1,8 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Owner")
@@ -22,11 +21,15 @@ public class Owner extends UserApp {
     @Column(name = "neighborhood", nullable = false)
     private String neighborhood;
 
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Pet> pets = new ArrayList<>();
+
+
     public Owner() {
     }
 
     public Owner(String username, String password, String email, Long personId, String name, String address, String neighborhood) {
-        super(username, password, email, "owner");
+        super(username, password, email, "Owner");
         this.personId = personId;
         this.name = name;
         this.address = address;
@@ -65,4 +68,12 @@ public class Owner extends UserApp {
         this.neighborhood = neighborhood;
     }
 
+    public List<Pet> getPets() {
+        return pets;
+    }
+
+    public void addPets(Pet pet) {
+        pets.add(pet);
+        pet.setOwner_id(this);
+    }
 }
