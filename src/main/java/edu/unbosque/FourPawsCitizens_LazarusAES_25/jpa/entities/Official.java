@@ -17,7 +17,7 @@ public class Official extends UserApp {
     }
 
     public Official(String username, String password, String email, String role, String name) {
-        super(username, password, email, role);
+        super(username, password, email, "official");
         this.name = name;
     }
 
