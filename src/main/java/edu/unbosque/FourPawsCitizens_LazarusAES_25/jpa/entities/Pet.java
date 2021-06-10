@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+
+@PrimaryKeyJoinColumn
 @Table(name = "Pet")
 @NamedQueries({
         @NamedQuery(name = "Pet.findAll",
