@@ -6,30 +6,34 @@ import java.util.List;
 
 @Entity
 @Table(name = "Pet")
+@NamedQueries({
+        @NamedQuery(name = "Pet.findAll",
+                query = "SELECT b FROM Pet b")
+})
 public class Pet {
     @Id
     @Column(name = "pet_id", nullable = false)
     private Integer pet_id;
 
-    @Column(name = "microship", nullable = false,unique = true)
+    @Column(name = "microship",unique = true)
     private String microship;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "species", nullable = false)
+    @Column(name = "species")
     private String species;
 
-    @Column(name = "race", nullable = false)
+    @Column(name = "race")
     private String race;
 
-    @Column(name = "size", nullable = false)
+    @Column(name = "size")
     private String size;
 
-    @Column(name = "sex", nullable = false)
+    @Column(name = "sex")
     private String sex;
 
-    @Column(name = "picture", nullable = false)
+    @Column(name = "picture")
     private String picture;
 
     @ManyToOne
