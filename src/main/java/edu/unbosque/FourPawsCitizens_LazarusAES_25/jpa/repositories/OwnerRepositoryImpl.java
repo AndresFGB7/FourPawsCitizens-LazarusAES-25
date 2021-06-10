@@ -3,6 +3,7 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Owner;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,7 +66,10 @@ public class OwnerRepositoryImpl implements OwnerRepository {
     @Override
     //Edit an Owner of the DataBase
     public void editOwner(Integer id, String username, String password, String email, Long personId, String name, String adress, String neighborhood) {
-        Owner owner = entityManager.find(Owner.class, id);
+        List x = new ArrayList();
+        x.add(id);
+        x.add(username);
+        Owner owner = entityManager.find(Owner.class, x);
         if (owner != null) {
             try {
                 entityManager.getTransaction().begin();
