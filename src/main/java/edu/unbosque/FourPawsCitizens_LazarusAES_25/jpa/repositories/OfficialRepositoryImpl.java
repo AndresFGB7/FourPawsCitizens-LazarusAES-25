@@ -14,8 +14,11 @@ public class OfficialRepositoryImpl implements OfficialRepository{
     public OfficialRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
-
-    @Override//Save the Official
+    /**
+     * Save the Official
+     * @param oficial: Official
+     */
+    @Override
     public Optional<Official> save(Official oficial) {
         try {
             entityManager.getTransaction().begin();

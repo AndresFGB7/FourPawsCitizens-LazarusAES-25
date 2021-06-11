@@ -16,7 +16,12 @@ public class CaseRepositoryImpl implements CaseRepository{
         this.entityManager = entityManager;
     }
 
-    @Override //save de case
+    /**
+     * save de case
+     * @param aCase
+     * @return Optional of Case
+     */
+    @Override
     public Optional<Case> save(Case aCase) {
        try {
            entityManager.getTransaction().begin();
@@ -29,18 +34,31 @@ public class CaseRepositoryImpl implements CaseRepository{
         return Optional.empty();
     }
 
-    @Override //Find a case by id
+    /**
+     * Find a case by id
+     * @param id
+     * @return Optional of Case
+     */
+    @Override
     public Optional<Case> findById(Integer id) {
         Case aCase = entityManager.find(Case.class, id);
         return aCase != null ? Optional.of(aCase) : Optional.empty();
     }
 
-    @Override//Find all the cases
+    /**
+     * Find all the cases
+     * @return List of all cases
+     */
+    @Override
     public List<Case> findAll() {
         return entityManager.createQuery("from Case").getResultList();
     }
 
-    @Override//Delete a Case by id
+    /**
+     * Delete a Case by id
+     * @param id
+     */
+    @Override
     public void deleteById(Integer id) {
         Case aCase = entityManager.find(Case.class, id);
         if(aCase != null){
@@ -55,6 +73,14 @@ public class CaseRepositoryImpl implements CaseRepository{
 
     }
 
+    /**
+     * Delete a Case by id
+     * @param id
+     * @param created_at
+     * @param type
+     * @param description
+     * @param pet_id
+     */
     @Override//Edit a case in the DataBase
     public void editCase(Integer id, String created_at, String type, String description, Integer pet_id) {
         Case aCase = entityManager.find(Case.class, id);
