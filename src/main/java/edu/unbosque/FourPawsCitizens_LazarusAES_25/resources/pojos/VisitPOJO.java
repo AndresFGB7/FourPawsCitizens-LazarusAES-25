@@ -3,7 +3,9 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos;
 
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Pet;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Vet;
-
+/**
+ * POJO base class, for Visits to a vet
+ */
 public class VisitPOJO {
 
     private Integer visit_id;
@@ -17,11 +19,22 @@ public class VisitPOJO {
     private Integer vet_id;
 
     private Integer pet_id;
-
+    /**
+     * Constructor Method
+     */
     public VisitPOJO() {
 
     }
 
+    /**
+     * Second constructor method  of VisitPOJO with params
+     * @param visit_id: Integer
+     * @param created_id: String
+     * @param type: String
+     * @param description: String
+     * @param vet_id: Integer
+     * @param pet: Integer
+     */
     public VisitPOJO(Integer visit_id, String created_id, String type, String description, Integer vet_id, Integer pet) {
         this.visit_id = visit_id;
         this.created_at = created_id;

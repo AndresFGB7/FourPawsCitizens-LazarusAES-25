@@ -4,6 +4,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "VisitPOJO")
+/**
+ *  Class for visits to a vet
+ */
 public class Visit {
 
     @Id
@@ -27,10 +30,24 @@ public class Visit {
     @JoinColumn(name = "pet_id")
     private Pet pet;
 
-    public Visit(){
+
+    /**
+     * Constructor Method
+     */
+    public Visit() {
 
     }
 
+    /**
+     * Second constructor method of Visit with params
+     *
+     * @param visit_id:    Integer
+     * @param created_id:  String
+     * @param type:        String
+     * @param description: String
+     * @param vet:         Vet
+     * @param pet:         Pet
+     */
     public Visit(Integer visit_id, String created_id, String type, String description, Vet vet, Pet pet) {
         this.visit_id = visit_id;
         this.created_at = created_id;

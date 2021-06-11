@@ -7,6 +7,9 @@ import java.util.List;
 @Entity
 @Table(name = "Owner")
 @PrimaryKeyJoinColumn
+/**
+ *  Class for Owner Users extends UserApp
+ */
 public class Owner extends UserApp {
 
     @Column(name = "person_id", nullable = false, unique = true)
@@ -24,10 +27,22 @@ public class Owner extends UserApp {
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Pet> pets = new ArrayList<>();
 
-
+    /**
+     * Constructor Method
+     */
     public Owner() {
     }
 
+    /**
+     * This is the second method constructor of Case with params
+     * @param username: String
+     * @param password: String
+     * @param email: String
+     * @param personId: Long
+     * @param name: String
+     * @param address: String
+     * @param neighborhood: String
+     */
     public Owner(String username, String password, String email, Long personId, String name, String address, String neighborhood) {
         super(username, password, email, "Owner");
         this.personId = personId;

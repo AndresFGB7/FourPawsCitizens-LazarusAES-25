@@ -1,5 +1,7 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos;
-
+/**
+ * POJO base class, for Pets (4 Citizens)
+ */
 public class PetPOJO {
 
     private Integer pet_id;
@@ -19,11 +21,25 @@ public class PetPOJO {
     private String picture;
 
     private Integer owner_id;
-
+    /**
+     * Constructor Method
+     */
     public PetPOJO(){
 
     }
 
+    /**
+     * Second constructor method  of PetPOJO with params
+     * @param pet_id: Integer
+     * @param microchip: String
+     * @param name: String
+     * @param species: String
+     * @param race: String
+     * @param size: String
+     * @param sex: String
+     * @param picture: String
+     * @param owner_id: Integer
+     */
     public PetPOJO(Integer pet_id, String microchip, String name, String species, String race, String size, String sex, String picture, Integer owner_id) {
         this.pet_id = pet_id;
         this.microchip = microchip;

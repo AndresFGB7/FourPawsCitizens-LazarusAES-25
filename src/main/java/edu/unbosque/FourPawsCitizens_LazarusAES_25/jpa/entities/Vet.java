@@ -7,6 +7,9 @@ import java.util.List;
 @Entity
 @Table(name = "VetPOJO")
 @PrimaryKeyJoinColumn
+/**
+ *  Class for Vet Users extends UserApp
+ */
 public class Vet extends UserApp{
 
     @GeneratedValue
@@ -25,11 +28,24 @@ public class Vet extends UserApp{
     @OneToMany(mappedBy = "vet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Visit> visits = new ArrayList<>();
 
+    /**
+     * Constructor Method
+     */
     public Vet(){
 
     }
 
-
+    /**
+     * Second constructor method  of Vet with params
+     * @param username: String
+     * @param password: String
+     * @param email: String
+     * @param role: String
+     * @param vet_id: Integer
+     * @param name: String
+     * @param address: String
+     * @param neighborhood: String
+     */
     public Vet(String username, String password, String email, String role, Integer vet_id, String name, String address, String neighborhood) {
         super(username, password, email, role);
         this.vet_id = vet_id;
