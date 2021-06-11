@@ -6,6 +6,9 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * This class have the methods for save, find by id, find all, delete by id and edit a Pet from the Database
+ */
 public class PetRepositoryImpl implements PetRepository{
 
     private EntityManager entityManager;
@@ -14,6 +17,11 @@ public class PetRepositoryImpl implements PetRepository{
         this.entityManager = entityManager;
     }
 
+    /**
+     * Save a Pet
+     * @param pet: Pet
+     * @return Optional of Pet
+     */
     @Override
     public Optional<Pet> save(Pet pet) {
         try {
@@ -25,13 +33,22 @@ public class PetRepositoryImpl implements PetRepository{
         }
         return Optional.empty();
     }
-
+    /**
+     * Find by id an Pet
+     *
+     * @param id: Integer
+     * @return Optional of Pet
+     */
     @Override
     public Optional<Pet> findById(Integer id) {
         Pet pet = entityManager.find(Pet.class, id);
         return pet != null ? Optional.of(pet) : Optional.empty();
     }
 
+    /**
+     * Find all the Pets
+     * @return List of all Pets
+     */
     @Override
     public List<Pet> findAll() {
         return entityManager.createQuery("from Pet").getResultList();
@@ -59,6 +76,11 @@ public class PetRepositoryImpl implements PetRepository{
         }
     }
 
+    /**
+     * Delete by id an owner
+     *
+     * @param id: Integer
+     */
     @Override
     public void deleteById(Integer id) {
         Pet pet = entityManager.find(Pet.class, id);

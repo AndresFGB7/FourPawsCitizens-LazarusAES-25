@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 /*
-    This class, save, fynd by id, find all, delete by id and edit an Owner from the Database
+ *  This class have the methods for save, find by id, find all, delete by id and edit an Owner from the Database
  */
 public class OwnerRepositoryImpl implements OwnerRepository {
 
@@ -18,8 +18,14 @@ public class OwnerRepositoryImpl implements OwnerRepository {
         this.entityManager = entityManager;
     }
 
+    /**
+     * Save an owner
+     *
+     * @param owner: Owner
+     * @return Optional of Owner
+     */
     @Override
-    public Optional<Owner> save(Owner owner) {//Save an owner
+    public Optional<Owner> save(Owner owner) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(owner);
@@ -31,19 +37,34 @@ public class OwnerRepositoryImpl implements OwnerRepository {
         return Optional.empty();
     }
 
+    /**
+     * Find by id an Owner
+     *
+     * @param id: Integer
+     * @return Optional of Owner
+     */
     @Override
-    public Optional<Owner> findById(Integer id) { //Find by id an Owner
+    public Optional<Owner> findById(Integer id) {
         Owner owner = entityManager.find(Owner.class, id);
         return owner != null ? Optional.of(owner) : Optional.empty();
     }
 
+    /**
+     * Find all the owners
+     * @return List of all Owners
+     */
     @Override
     public List<Owner> findAll() { //Find all the Owners
         return entityManager.createQuery("from Owner").getResultList();
     }
 
+    /**
+     * Delete by id an owner
+     *
+     * @param id: Integer
+     */
     @Override
-    public void deleteById(Integer id) { //Delete by id an owner
+    public void deleteById(Integer id) {
         Owner owner = entityManager.find(Owner.class, id);
         if (owner != null) {
             try {
@@ -63,8 +84,19 @@ public class OwnerRepositoryImpl implements OwnerRepository {
         }
     }
 
+    /**
+     * Edit an Owner of the DataBase
+     *
+     * @param id:           Integer
+     * @param username:     String
+     * @param password:     String
+     * @param email:        String
+     * @param personId:     Long
+     * @param name:         String
+     * @param adress:       String
+     * @param neighborhood: String
+     */
     @Override
-    //Edit an Owner of the DataBase
     public void editOwner(Integer id, String username, String password, String email, Long personId, String name, String adress, String neighborhood) {
         List x = new ArrayList();
         x.add(id);
