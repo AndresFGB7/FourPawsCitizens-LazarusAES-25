@@ -4,6 +4,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Case")
+/**
+ * This class is for case
+ */
 public class Case {
     @Id
     @GeneratedValue
@@ -23,11 +26,20 @@ public class Case {
     @JoinColumn(name = "pet_id")
     private Pet pet_id;
 
-
+    /**
+     * Constructor without params
+     */
     public Case(){
 
     }
-
+    /**
+     * This is the second method constructor of Case with params
+     * @param case_id: int
+     * @param created_at: String
+     * @param type: String
+     * @param description: String
+     * @param pet_id: Pet
+     */
     public Case(int case_id, String created_at, String type, String description, Pet pet_id) {
         this.case_id = case_id;
         this.created_at = created_at;
@@ -35,6 +47,7 @@ public class Case {
         this.description = description;
         this.pet_id = pet_id;
     }
+
 
     public int getCase_id() {
         return case_id;
