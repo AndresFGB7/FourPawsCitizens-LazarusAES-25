@@ -11,7 +11,7 @@ public class Case {
     @Id
     @GeneratedValue
     @Column(name = "case_id", nullable = false)
-    private int case_id;
+    private Integer case_id;
 
     @Column(name = "created_at", nullable = false)
     private String created_at;
@@ -49,11 +49,11 @@ public class Case {
     }
 
 
-    public int getCase_id() {
+    public Integer getCase_id() {
         return case_id;
     }
 
-    public void setCase_id(int case_id) {
+    public void setCase_id(Integer case_id) {
         this.case_id = case_id;
     }
 

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 /*
-    This class, save, fynd by id, find all, delete by id and edit an Owner from the Database
+    This class, save, find by id, find all, delete by id and edit an Owner from the Database
  */
 public class OwnerRepositoryImpl implements OwnerRepository {
 
@@ -32,7 +32,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
     }
 
     @Override
-    public Optional<Owner> findById(Integer id) { //Find by id an Owner
+    public Optional<Owner> findById(Integer id) { //Find an Owner by id
         Owner owner = entityManager.find(Owner.class, id);
         return owner != null ? Optional.of(owner) : Optional.empty();
     }
