@@ -8,6 +8,9 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * This class have the methods for save, find by id, find all, delete by id and edit a Vet from the Database
+ */
 public class VetRepositoryImpl implements VetRepository {
     private EntityManager entityManager;
 
@@ -15,6 +18,12 @@ public class VetRepositoryImpl implements VetRepository {
         this.entityManager = entityManager;
     }
 
+    /**
+     * Save a Vet
+     *
+     * @param vet: Vet
+     * @return Optional of Vet
+     */
     @Override
     public Optional<Vet> save(Vet vet) {
         try {
@@ -28,17 +37,33 @@ public class VetRepositoryImpl implements VetRepository {
         return Optional.empty();
     }
 
+    /**
+     * Find by username a Vet
+     *
+     * @param username: String
+     * @return Optional of Vet
+     */
     @Override
     public Optional<Vet> findByUserName(String username) {
         Vet vet = entityManager.find(Vet.class, username);
         return vet != null ? Optional.of(vet) : Optional.empty();
     }
 
+    /**
+     * Find all the Vets
+     *
+     * @return List of all Vets
+     */
     @Override
     public List<Vet> findAll() {
         return entityManager.createQuery("from Vet").getResultList();
     }
 
+    /**
+     * Delete by username a Vet
+     *
+     * @param username: String
+     */
     @Override
     public void deleteByUserName(String username) {
         Vet vet = entityManager.find(Vet.class, username);
@@ -60,14 +85,21 @@ public class VetRepositoryImpl implements VetRepository {
         }
     }
 
+    /**
+     * Edit a Vet of the DataBase
+     * @param username: String
+     * @param name: String
+     * @param address: String
+     * @param neighborhood: String
+     */
     @Override
-    public void editVet(String username, String name, String adress, String neighborhood) {
+    public void editVet(String username, String name, String address, String neighborhood) {
         Vet vet = entityManager.find(Vet.class, username);
         if (vet != null) {
             try {
                 entityManager.getTransaction().begin();
                 vet.setName(name);
-                vet.setAddress(adress);
+                vet.setAddress(address);
                 vet.setNeighborhood(neighborhood);
                 entityManager.getTransaction().commit();
             } catch (Exception e) {
