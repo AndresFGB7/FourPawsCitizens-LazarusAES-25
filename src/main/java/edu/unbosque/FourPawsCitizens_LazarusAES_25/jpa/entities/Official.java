@@ -8,14 +8,28 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Official")
 @PrimaryKeyJoinColumn
+/**
+ *  Class for Official Users extends UserApp
+ */
 public class Official extends UserApp {
 
     @Column(name = "name", nullable = false)
     private String name;
 
+    /**
+     * Constructor Method
+     */
     public Official() {
     }
 
+    /**
+     * Second constructor method  of Official with params
+     * @param username: String Key  User Name
+     * @param password: String pass
+     * @param email: String email
+     * @param role: String role
+     * @param name: String name
+     */
     public Official(String username, String password, String email, String role, String name) {
         super(username, password, email, "official");
         this.name = name;

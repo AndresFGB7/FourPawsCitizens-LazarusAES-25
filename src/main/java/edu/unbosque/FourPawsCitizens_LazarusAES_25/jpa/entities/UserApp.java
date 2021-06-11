@@ -5,6 +5,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "UserApp")
 @Inheritance(strategy = InheritanceType.JOINED)
+/**
+ *  Abstract Class for Users (Owners, Vets, Officials)
+ */
 public abstract class UserApp {
 
     @Id
@@ -20,9 +23,20 @@ public abstract class UserApp {
     @Column(name = "role", nullable = false)
     private String role;
 
+    /**
+     * Constructor Method
+     */
     public UserApp() {
     }
 
+    /**
+     * Second constructor method  of User App with params
+     *
+     * @param username: String
+     * @param password: String
+     * @param email:    String
+     * @param role:     String
+     */
     public UserApp(String username, String password, String email, String role) {
         this.username = username;
         this.password = password;

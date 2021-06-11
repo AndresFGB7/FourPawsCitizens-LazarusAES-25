@@ -1,5 +1,7 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos;
-
+/**
+ * POJO base class, for Owners Users
+ */
 public class OwnerPOJO {
 
     private Long personId;
@@ -18,13 +20,25 @@ public class OwnerPOJO {
 
     public OwnerPOJO() {
     }
-
+    /**
+     * Constructor Method
+     */
     public OwnerPOJO(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
     }
 
+    /**
+     * Second constructor method  of OwnerPOJO with params
+     * @param username: String
+     * @param password: String
+     * @param email: String
+     * @param personId: Ling
+     * @param name: String
+     * @param address: String
+     * @param neighborhood: String
+     */
     public OwnerPOJO(String username, String password, String email, Long personId, String name, String address, String neighborhood) {
         this.username = username;
         this.password = password;

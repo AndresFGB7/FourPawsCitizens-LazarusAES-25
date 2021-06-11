@@ -12,6 +12,9 @@ import java.util.List;
         @NamedQuery(name = "Pet.findAll",
                 query = "SELECT b FROM Pet b")
 })
+/**
+ *  Class for Pets
+ */
 public class Pet {
     @Id
     @Column(name = "pet_id", nullable = false)
@@ -48,10 +51,27 @@ public class Pet {
     @OneToMany(mappedBy = "pet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Visit> visits = new ArrayList<>();
 
+    /**
+     * Constructor Method
+     */
     public Pet(){
 
     }
 
+    /**
+     * This is the second method constructor of Pet with params
+     * @param pet_id: Integer
+     * @param microship: String
+     * @param name: String
+     * @param species: String
+     * @param race: String
+     * @param size: String
+     * @param sex: String
+     * @param picture: String
+     * @param owner_id: Owner
+     * @param cases: List
+     * @param visits: List
+     */
     public Pet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture, Owner owner_id, List<Case> cases, List<Visit> visits) {
         this.pet_id = pet_id;
         this.microship = microship;
