@@ -34,7 +34,7 @@ public class OwnerResource {
     @Logged
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public Response hello(@HeaderParam("role") String role) {
+    public Response get(@HeaderParam("role") String role) {
 
         // If role doesn't match
         if (!"owner".equals(role))
@@ -43,7 +43,7 @@ public class OwnerResource {
                     .build();
 
         return Response.ok()
-                .entity("Hello, World, " + role + "!")
+                .entity("created")
                 .build();
 
     }

@@ -1,8 +1,11 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.services;
 
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Owner;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Vet;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories.OwnerRepositoryImpl;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories.VetRepository;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories.VetRepositoryImpl;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.OwnerPOJO;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.VetPOJO;
 
 import javax.persistence.EntityManager;
@@ -10,6 +13,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The service of Vet, use Repository of vet
@@ -40,30 +44,36 @@ public class VetService {
         return vetPOJOS;
     }
 
+
     /**
      * Save in DB a Vet
-     * @param username: String
-     * @param password: String
-     * @param email: String
-     * @param name: String
-     * @param address: String
-     * @param neighborhood: String
-     * @return an object (Vet)
+     * @param vetPOJO: VetPOJO
+     * @return an Optional of POJO
      */
-    public Vet saveVet(String username,String password, String email, String name, String address, String neighborhood){
 
+    public Optional<VetPOJO> saveVet(VetPOJO vetPOJO){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         vetRepository = new VetRepositoryImpl(entityManager);
 
-        Vet vet = new Vet(username,password,email,name,address,neighborhood);
-        Vet persistedVet = vetRepository.save(vet).get();
+        Vet vet = new Vet(vetPOJO.getUsername(),vetPOJO.getPassword(),vetPOJO.getEmail(),vetPOJO.getName(),vetPOJO.getAddress(),vetPOJO.getNeighborhood());
+        Optional<Vet> persistedOwner = vetRepository.save(vet);
 
         entityManager.close();
         entityManagerFactory.close();
 
-        return persistedVet;
+        if (persistedOwner.isPresent()) {
+            return Optional.of(new VetPOJO(persistedOwner.get().getUsername(),
+                    persistedOwner.get().getPassword(),
+                    persistedOwner.get().getEmail(),
+                    persistedOwner.get().getName(),
+                    persistedOwner.get().getAddress(),
+                    persistedOwner.get().getNeighborhood()));
+        } else {
+            return Optional.empty();
+        }
+
     }
 
     /**
