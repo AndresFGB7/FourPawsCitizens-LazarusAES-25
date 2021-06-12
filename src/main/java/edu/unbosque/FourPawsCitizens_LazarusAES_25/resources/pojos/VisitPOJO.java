@@ -33,9 +33,8 @@ public class VisitPOJO {
      * @param type: String
      * @param description: String
      * @param vet_id: Integer
-     * @param pet: Integer
      */
-    public VisitPOJO(Integer visit_id, String created_id, String type, String description, Integer vet_id, Integer pet) {
+    public VisitPOJO(Integer visit_id, String created_id, String type, String description, Integer vet_id, Integer pet_id) {
         this.visit_id = visit_id;
         this.created_at = created_id;
         this.type = type;

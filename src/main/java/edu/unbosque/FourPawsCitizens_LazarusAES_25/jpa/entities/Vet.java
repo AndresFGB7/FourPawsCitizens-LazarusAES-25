@@ -40,15 +40,12 @@ public class Vet extends UserApp{
      * @param username: String
      * @param password: String
      * @param email: String
-     * @param role: String
-     * @param vet_id: Integer
      * @param name: String
      * @param address: String
      * @param neighborhood: String
      */
-    public Vet(String username, String password, String email, String role, Integer vet_id, String name, String address, String neighborhood) {
-        super(username, password, email, role);
-        this.vet_id = vet_id;
+    public Vet(String username, String password, String email, String name, String address, String neighborhood) {
+        super(username, password, email, "vet");
         this.name = name;
         this.address = address;
         this.neighborhood = neighborhood;

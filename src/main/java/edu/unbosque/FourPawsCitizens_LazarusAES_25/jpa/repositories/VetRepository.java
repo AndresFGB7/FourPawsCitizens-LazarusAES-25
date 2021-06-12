@@ -16,5 +16,5 @@ public interface VetRepository {
 
     void deleteByUserName(String username);
 
-    void editVet (String username, String name, String adress, String neighborhood);
+    void editVet (String username,String password, String email, String name, String address, String neighborhood);
 }

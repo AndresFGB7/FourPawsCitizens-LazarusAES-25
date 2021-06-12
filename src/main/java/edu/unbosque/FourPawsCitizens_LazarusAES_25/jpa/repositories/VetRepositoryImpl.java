@@ -93,12 +93,14 @@ public class VetRepositoryImpl implements VetRepository {
      * @param neighborhood: String
      */
     @Override
-    public void editVet(String username, String name, String address, String neighborhood) {
+    public void editVet(String username, String password, String email, String name, String address, String neighborhood) {
         Vet vet = entityManager.find(Vet.class, username);
         if (vet != null) {
             try {
                 entityManager.getTransaction().begin();
                 vet.setName(name);
+                vet.setPassword(password);
+                vet.setEmail(email);
                 vet.setAddress(address);
                 vet.setNeighborhood(neighborhood);
                 entityManager.getTransaction().commit();

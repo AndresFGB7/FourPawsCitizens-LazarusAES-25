@@ -27,10 +27,9 @@ public class Official extends UserApp {
      * @param username: String Key  User Name
      * @param password: String pass
      * @param email: String email
-     * @param role: String role
      * @param name: String name
      */
-    public Official(String username, String password, String email, String role, String name) {
+    public Official(String username, String password, String email, String name) {
         super(username, password, email, "official");
         this.name = name;
     }
