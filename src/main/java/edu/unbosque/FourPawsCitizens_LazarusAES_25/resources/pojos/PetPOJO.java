@@ -1,4 +1,11 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos;
+
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Case;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Owner;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Visit;
+
+import java.util.List;
+
 /**
  * POJO base class, for Pets (4 Citizens)
  */
