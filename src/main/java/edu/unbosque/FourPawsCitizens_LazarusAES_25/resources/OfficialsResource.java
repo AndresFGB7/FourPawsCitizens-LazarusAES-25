@@ -1,12 +1,9 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources;
 
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Case;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.filters.Logged;
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.OfficialPOJO;
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.OwnerPOJO;
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.PetPOJO;
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.services.OfficialService;
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.services.OwnerService;
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.services.PetService;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.*;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.services.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -204,6 +201,40 @@ public class OfficialsResource {
 
         }
         return Response.ok().entity("No pets to show").build();
+    }
+
+    @GET
+    @Path("/pets/petCase/{type}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response caseByType(@PathParam("type") String type) {
+        List<CasePOJO> cases = new CaseService().ListCases();
+        List<CasePOJO> casesList = new ArrayList<>();
+        for(CasePOJO pojo : cases){
+            if(pojo.getType().equals(type)){
+                casesList.add(new CasePOJO(pojo.getCase_id(),pojo.getCreated_at(),pojo.getType(),pojo.getDescription(),pojo.getPet_id()));
+            }
+        }
+        if(casesList.isEmpty()){
+            return Response.ok().entity("No Cases to show").build();
+        }
+        return Response.ok().entity(casesList).build();
+    }
+
+    @GET
+    @Path("/pets/visit/{type}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response visitByType(@PathParam("type") String type) {
+        List<VisitPOJO> visit = new VisitService().listVisit();
+        List<VisitPOJO> visitPOJOS = new ArrayList<>();
+        for(VisitPOJO pojo : visit){
+            if(pojo.getType().equals(type)){
+                visitPOJOS.add(new VisitPOJO(pojo.getVisit_id(),pojo.getCreated_at(),pojo.getType(),pojo.getDescription(),pojo.getVet_id(),pojo.getPet_id()));
+            }
+        }
+        if(visitPOJOS.isEmpty()){
+            return Response.ok().entity("No Visits to show").build();
+        }
+        return Response.ok().entity(visitPOJOS).build();
     }
 
 }
