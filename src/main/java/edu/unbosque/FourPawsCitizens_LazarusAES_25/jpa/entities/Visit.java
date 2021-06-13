@@ -3,7 +3,7 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "VisitPOJO")
+@Table(name = "Visit")
 /**
  *  Class for visits to a vet
  */

@@ -3,7 +3,7 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Case")
+@Table(name = "PetCase")
 /**
  * Class for pet cases
  */
@@ -44,22 +44,6 @@ public class Case {
         this.type = type;
         this.description = description;
     }
-
-
-    /**
-     * This is the second method constructor of Case with params
-     * @param case_id: int id of case
-     * @param created_at: String created at x date
-     * @param type: String Type of case
-     * @param description: String
-     */
-    public Case(int case_id, String created_at, String type, String description) {
-        this.case_id = case_id;
-        this.created_at = created_at;
-        this.type = type;
-        this.description = description;
-    }
-
 
     public Integer getCase_id() {
         return case_id;
