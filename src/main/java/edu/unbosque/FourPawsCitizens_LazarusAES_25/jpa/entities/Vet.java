@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "VetPOJO")
+@Table(name = "Vet")
 @PrimaryKeyJoinColumn
 /**
  *  Class for Vet Users extends UserApp
