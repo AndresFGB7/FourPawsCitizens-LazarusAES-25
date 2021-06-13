@@ -2,7 +2,9 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 
@@ -17,11 +19,12 @@ import java.util.List;
  */
 public class Pet {
     @Id
+    @GeneratedValue
     @Column(name = "pet_id", nullable = false)
     private Integer pet_id;
 
     @Column(name = "microship",unique = true)
-    private String microship;
+    private String microchip;
 
     @Column(name = "name")
     private String name;
@@ -42,14 +45,14 @@ public class Pet {
     private String picture;
 
     @ManyToOne
-    @JoinColumn(name = "person_id")
-    private Owner owner_id;
+    @JoinColumn(name = "username")
+    private Owner owner;
 
     @OneToMany(mappedBy = "pet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Case> cases = new ArrayList<>();
+    private Set<Case> cases = new HashSet<>();
 
     @OneToMany(mappedBy = "pet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Visit> visits = new ArrayList<>();
+    private Set<Visit> visits = new HashSet<>();
 
     /**
      * Constructor Method
@@ -61,27 +64,24 @@ public class Pet {
     /**
      * This is the second method constructor of Pet with params
      * @param pet_id: Integer
-     * @param microship: String
+     * @param microchip: String
      * @param name: String
      * @param species: String
      * @param race: String
      * @param size: String
      * @param sex: String
      * @param picture: String
-     * @param owner_id: Owner
      */
-    public Pet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture, Owner owner_id) {
+    public Pet(Integer pet_id, String microchip, String name, String species, String race, String size, String sex, String picture) {
         this.pet_id = pet_id;
-        this.microship = microship;
+        this.microchip = microchip;
         this.name = name;
         this.species = species;
         this.race = race;
         this.size = size;
         this.sex = sex;
         this.picture = picture;
-        this.owner_id = owner_id;
     }
-
     public Integer getPet_id() {
         return pet_id;
     }
@@ -90,12 +90,12 @@ public class Pet {
         this.pet_id = pet_id;
     }
 
-    public String getMicroship() {
-        return microship;
+    public String getMicrochip() {
+        return microchip;
     }
 
-    public void setMicroship(String microship) {
-        this.microship = microship;
+    public void setMicrochip(String microchip) {
+        this.microchip = microchip;
     }
 
     public String getName() {
@@ -147,14 +147,14 @@ public class Pet {
     }
 
     public Owner getOwner_id() {
-        return owner_id;
+        return owner;
     }
 
     public void setOwner_id(Owner owner_id) {
-        this.owner_id = owner_id;
+        this.owner = owner_id;
     }
 
-    public List<Case> getCases() {
+    public Set<Case> getCases() {
         return cases;
     }
 
@@ -164,11 +164,11 @@ public class Pet {
 
     }
 
-    public void setCases(List<Case> cases) {
+    public void setCases(Set<Case> cases) {
         this.cases = cases;
     }
 
-    public List<Visit> getVisits() {
+    public Set<Visit> getVisits() {
         return visits;
     }
 
@@ -176,4 +176,5 @@ public class Pet {
         visits.add(visit);
         visit.setPet(this);
     }
+
 }

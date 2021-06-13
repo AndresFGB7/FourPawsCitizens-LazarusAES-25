@@ -12,7 +12,11 @@ import java.util.List;
  */
 public class Owner extends UserApp {
 
-    @Column(name = "person_id", nullable = false, unique = true)
+    @Id
+    @Column(name = "username", unique = true)
+    private String username;
+
+    @Column(name = "owner_id", nullable = false, unique = true)
     private Long personId;
 
     @Column(name = "name", nullable = false)
@@ -24,7 +28,7 @@ public class Owner extends UserApp {
     @Column(name = "neighborhood", nullable = false)
     private String neighborhood;
 
-    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Pet> pets = new ArrayList<>();
 
     /**

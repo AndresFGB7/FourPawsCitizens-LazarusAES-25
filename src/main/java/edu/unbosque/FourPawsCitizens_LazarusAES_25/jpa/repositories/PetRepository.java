@@ -12,7 +12,7 @@ public interface PetRepository {
 
     List<Pet> findAll();
 
-    void editPet(Integer pet_id,String microship,String name,String species,String race,String size,String sex,String picture,Integer owner_id);
+    void editPet(Integer pet_id,String microship,String name,String species,String race,String size,String sex,String picture);
 
     void deleteById(Integer id);
 

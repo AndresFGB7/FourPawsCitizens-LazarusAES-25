@@ -9,6 +9,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Stateless
@@ -43,5 +45,69 @@ public class OwnerService {
         }
 
     }
+
+    public Optional<OwnerPOJO> findOwner(Integer id){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        ownerRepository = new OwnerRepositoryImpl(entityManager);
+
+        Optional<Owner> owners = ownerRepository.findById(id);
+
+        entityManager.close();
+        entityManagerFactory.close();
+
+        if (owners.isPresent()) {
+            return Optional.of(new OwnerPOJO(owners.get().getUsername(),
+                    owners.get().getPassword(),
+                    owners.get().getEmail(),
+                    owners.get().getPersonId(),
+                    owners.get().getName(),
+                    owners.get().getAddress(),
+                    owners.get().getNeighborhood()));
+        } else {
+            System.out.println("no encontro o no sirve pana");
+            return Optional.empty();
+        }
+    }
+
+    public List<OwnerPOJO> listOwners() {
+
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        ownerRepository = new OwnerRepositoryImpl(entityManager);
+        List<Owner> owners = ownerRepository.findAll();
+
+        entityManager.close();
+        entityManagerFactory.close();
+
+        List<OwnerPOJO> ownerPOJOS = new ArrayList<>();
+        for (Owner owner : owners) {
+            ownerPOJOS.add(new OwnerPOJO(owner.getUsername(), owner.getPassword(), owner.getEmail(), owner.getPersonId(), owner.getName(), owner.getAddress(), owner.getNeighborhood()));
+        }
+        return ownerPOJOS;
+    }
+
+    public void editOwner(Integer id, String username, String password, String email, Long personId, String name, String adress, String neighborhood) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        ownerRepository = new OwnerRepositoryImpl(entityManager);
+
+        ownerRepository.editOwner(id, username, password, email, personId, name, adress, neighborhood);
+
+        entityManager.close();
+        entityManagerFactory.close();
+    }
+
+    public void deleteOwner(Integer id) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        ownerRepository = new OwnerRepositoryImpl(entityManager);
+        ownerRepository.deleteById(id);
+        entityManager.close();
+        entityManagerFactory.close();
+    }
+
 
 }

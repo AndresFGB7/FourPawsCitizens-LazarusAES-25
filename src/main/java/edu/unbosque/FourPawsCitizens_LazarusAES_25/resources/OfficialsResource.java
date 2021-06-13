@@ -25,7 +25,7 @@ public class OfficialsResource {
                     .build();
 
         return Response.ok()
-                .entity(new OfficialService().listOfficial())
+
                 .build();
 
     }
