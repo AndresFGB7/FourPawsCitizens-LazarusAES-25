@@ -69,10 +69,8 @@ public class Pet {
      * @param sex: String
      * @param picture: String
      * @param owner_id: Owner
-     * @param cases: List
-     * @param visits: List
      */
-    public Pet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture, Owner owner_id, List<Case> cases, List<Visit> visits) {
+    public Pet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture, Owner owner_id) {
         this.pet_id = pet_id;
         this.microship = microship;
         this.name = name;
@@ -82,8 +80,6 @@ public class Pet {
         this.sex = sex;
         this.picture = picture;
         this.owner_id = owner_id;
-        this.cases = cases;
-        this.visits = visits;
     }
 
     public Integer getPet_id() {
