@@ -3,7 +3,7 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
              version="2.2">
-    <persistence-unit name="LazarusAES_256" transaction-type="JTA">
+    <persistence-unit name="LazarusAES-256" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:/PostgresDS</jta-data-source>
         <class>edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.UserApp</class>

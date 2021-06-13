@@ -20,7 +20,7 @@ public class OwnerService {
 
     public Optional<OwnerPOJO> createOwner(OwnerPOJO ownerPOJO) {
 
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         ownerRepository = new OwnerRepositoryImpl(entityManager);
@@ -47,7 +47,7 @@ public class OwnerService {
     }
 
     public Optional<OwnerPOJO> findOwner(Integer id){
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         ownerRepository = new OwnerRepositoryImpl(entityManager);
 
@@ -72,7 +72,7 @@ public class OwnerService {
 
     public List<OwnerPOJO> listOwners() {
 
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         ownerRepository = new OwnerRepositoryImpl(entityManager);
@@ -89,7 +89,7 @@ public class OwnerService {
     }
 
     public void editOwner(Integer id, String username, String password, String email, Long personId, String name, String adress, String neighborhood) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         ownerRepository = new OwnerRepositoryImpl(entityManager);
@@ -101,7 +101,7 @@ public class OwnerService {
     }
 
     public void deleteOwner(Integer id) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         ownerRepository = new OwnerRepositoryImpl(entityManager);
         ownerRepository.deleteById(id);

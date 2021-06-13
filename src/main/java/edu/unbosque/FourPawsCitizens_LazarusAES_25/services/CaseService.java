@@ -23,7 +23,7 @@ public class CaseService {
 
 
     public Optional<CasePOJO> createCase(Case aCase){
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         petRepository = new PetRepositoryImpl(entityManager);
@@ -42,7 +42,7 @@ public class CaseService {
     }
 
     public Optional<CasePOJO> findCase(Integer id){
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         caseRepository = new CaseRepositoryImpl(entityManager);
         Optional<Case> aCase = caseRepository.findById(id);
@@ -57,7 +57,7 @@ public class CaseService {
     }
 
     public List<CasePOJO> ListCases(){
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         caseRepository = new CaseRepositoryImpl(entityManager);
         List<Case> cases = caseRepository.findAll();
@@ -72,7 +72,7 @@ public class CaseService {
     }
 
     public void editCase(Integer id, String created_at, String type, String description){
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         caseRepository = new CaseRepositoryImpl(entityManager);
 
@@ -83,7 +83,7 @@ public class CaseService {
     }
 
     public void deleteCase(Integer id){
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         caseRepository = new CaseRepositoryImpl(entityManager);
 

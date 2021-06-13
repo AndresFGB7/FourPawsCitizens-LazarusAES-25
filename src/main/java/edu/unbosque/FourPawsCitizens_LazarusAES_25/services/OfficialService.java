@@ -24,14 +24,14 @@ public class OfficialService {
 
     OfficialRepository officialRepository;
 
-    public Optional<OfficialPOJO> saveOfficial(OfficialPOJO officialPOJO){
+    public Optional<OfficialPOJO> saveOfficial(OfficialPOJO officialPOJO) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         officialRepository = new OfficialRepositoryImpl(entityManager);
 
-        Official official = new Official(officialPOJO.getUsername(),officialPOJO.getPassword(),officialPOJO.getEmail(),officialPOJO.getName());
+        Official official = new Official(officialPOJO.getUsername(), officialPOJO.getPassword(), officialPOJO.getEmail(), officialPOJO.getName());
         Optional<Official> persistedOfficial = officialRepository.save(official);
 
         entityManager.close();
@@ -46,8 +46,8 @@ public class OfficialService {
         } else {
             return Optional.empty();
         }
-
- */
+*/
         return Optional.empty();
+
     }
 }

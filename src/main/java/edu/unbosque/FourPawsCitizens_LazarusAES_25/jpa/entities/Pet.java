@@ -45,7 +45,7 @@ public class Pet {
     @OneToMany(mappedBy = "pet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Case> cases = new HashSet<>();
 
-    @OneToMany(mappedBy = "pet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pet_id", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Visit> visits = new HashSet<>();
 
 

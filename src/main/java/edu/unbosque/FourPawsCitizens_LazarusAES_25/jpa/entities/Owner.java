@@ -29,7 +29,6 @@ public class Owner extends UserApp {
     private String neighborhood;
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
-
     private List<Pet> pets = new ArrayList<>();
 
     /**

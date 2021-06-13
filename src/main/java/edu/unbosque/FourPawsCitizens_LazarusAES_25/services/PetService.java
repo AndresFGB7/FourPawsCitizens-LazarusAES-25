@@ -23,7 +23,7 @@ public class PetService {
     OwnerRepository ownerRepository;
 
     public Optional<Pet> createPet(PetPOJO petPOJO) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         petRepository = new PetRepositoryImpl(entityManager);
         ownerRepository = new OwnerRepositoryImpl(entityManager);
@@ -40,7 +40,7 @@ public class PetService {
     }
 
     public Optional<PetPOJO> findPet(Integer id) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         petRepository = new PetRepositoryImpl(entityManager);
 
@@ -60,7 +60,7 @@ public class PetService {
     }
 
     public List<PetPOJO> ListPets(){
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         petRepository = new PetRepositoryImpl(entityManager);
         List<Pet> pets = petRepository.findAll();
@@ -77,7 +77,7 @@ public class PetService {
     }
 
     public void editPet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture){
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         petRepository = new PetRepositoryImpl(entityManager);
 
