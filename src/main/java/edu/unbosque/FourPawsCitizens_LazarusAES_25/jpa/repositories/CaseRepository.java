@@ -15,5 +15,5 @@ public interface CaseRepository {
 
     void deleteById(Integer id);
 
-    void editCase(Integer id, String created_at, String type, String description, Integer pet_id);
+    void editCase(Integer id, String created_at, String type, String description);
 }

@@ -79,15 +79,13 @@ public class CaseRepositoryImpl implements CaseRepository{
      * @param created_at
      * @param type
      * @param description
-     * @param pet_id
      */
     @Override//Edit a case in the DataBase
-    public void editCase(Integer id, String created_at, String type, String description, Integer pet_id) {
+    public void editCase(Integer id, String created_at, String type, String description) {
         Case aCase = entityManager.find(Case.class, id);
         if(aCase != null){
             try {
                 entityManager.getTransaction().begin();
-                aCase.setCase_id(id);
                 aCase.setCreated_at(created_at);
                 aCase.setType(type);
                 aCase.setDescription(description);

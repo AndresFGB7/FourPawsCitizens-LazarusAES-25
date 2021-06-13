@@ -51,6 +51,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 
     /**
      * Find all the owners
+     *
      * @return List of all Owners
      */
     @Override
@@ -80,6 +81,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 
             } catch (Exception e) {
                 e.printStackTrace();
+                System.out.println("No elimino Owner");
             }
         }
     }
@@ -113,6 +115,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
                 entityManager.getTransaction().commit();
             } catch (Exception e) {
                 e.printStackTrace();
+                System.out.println("no edito owner --repositori impl--");
             }
 
         }

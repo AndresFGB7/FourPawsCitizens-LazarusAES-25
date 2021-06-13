@@ -33,6 +33,7 @@ public class PetRepositoryImpl implements PetRepository{
         }
         return Optional.empty();
     }
+
     /**
      * Find by id an Pet
      *
@@ -54,8 +55,19 @@ public class PetRepositoryImpl implements PetRepository{
         return entityManager.createQuery("from Pet").getResultList();
     }
 
+    /**
+     * Edit a Pet
+     * @param pet_id
+     * @param microship
+     * @param name
+     * @param species
+     * @param race
+     * @param size
+     * @param sex
+     * @param picture
+     */
     @Override
-    public void editPet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture, Integer owner_id) {
+    public void editPet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture) {
 
         Pet pet = entityManager.find(Pet.class,pet_id);
         if(pet != null){

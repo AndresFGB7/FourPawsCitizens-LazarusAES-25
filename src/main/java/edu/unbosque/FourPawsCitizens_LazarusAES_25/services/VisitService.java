@@ -53,7 +53,7 @@ public class VisitService {
 
         visitRepository = new VisitRepositoryImpl(entityManager);
 
-        Visit visit = new Visit(visit_id,created_id,type,description,vet, pet);
+        Visit visit = new Visit(visit_id,created_id,type,description);
         Visit persistedVisit = visitRepository.save(visit).get();
 
         entityManager.close();

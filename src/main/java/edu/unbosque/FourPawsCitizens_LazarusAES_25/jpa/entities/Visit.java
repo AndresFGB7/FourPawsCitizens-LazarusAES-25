@@ -45,10 +45,8 @@ public class Visit {
      * @param created_id:  String
      * @param type:        String
      * @param description: String
-     * @param vet:         Vet
-     * @param pet:         Pet
      */
-    public Visit(Integer visit_id, String created_id, String type, String description, Vet vet, Pet pet) {
+    public Visit(Integer visit_id, String created_id, String type, String description) {
         this.visit_id = visit_id;
         this.created_at = created_id;
         this.type = type;
