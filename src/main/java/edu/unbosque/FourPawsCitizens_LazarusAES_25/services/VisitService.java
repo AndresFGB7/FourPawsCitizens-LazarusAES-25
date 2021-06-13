@@ -37,7 +37,7 @@ public class VisitService {
 
         List<VisitPOJO> visitPOJOS = new ArrayList<>();
         for (Visit visit : visits){
-            visitPOJOS.add(new VisitPOJO(visit.getVisit_id(),visit.getCreated_at(),visit.getType(),visit.getDescription(),visit.getVet().getVet_id(),visit.getPet().getPet_id()));
+            visitPOJOS.add(new VisitPOJO(visit.getVisit_id(),visit.getCreated_at(),visit.getType(),visit.getDescription(),visit.getVet().getVet_id(),visit.getPet_id().getPet_id()));
         }
         return visitPOJOS;
     }

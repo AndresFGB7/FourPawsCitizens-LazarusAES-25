@@ -5,13 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-
-@PrimaryKeyJoinColumn
 @Table(name = "Pet")
-@NamedQueries({
-        @NamedQuery(name = "Pet.findAll",
-                query = "SELECT b FROM Pet b")
-})
 /**
  *  Class for Pets
  */
@@ -45,10 +39,10 @@ public class Pet {
     @JoinColumn(name = "person_id")
     private Owner owner_id;
 
-    @OneToMany(mappedBy = "pet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pet_id", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Case> cases = new ArrayList<>();
 
-    @OneToMany(mappedBy = "pet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pet_id", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Visit> visits = new ArrayList<>();
 
     /**
@@ -161,17 +155,12 @@ public class Pet {
         aCase.setPet_id(this);
 
     }
-
-    public void setCases(List<Case> cases) {
-        this.cases = cases;
-    }
-
     public List<Visit> getVisits() {
         return visits;
     }
 
     public void addVisits(Visit visit) {
         visits.add(visit);
-        visit.setPet(this);
+        visit.setPet_id(this);
     }
 }
