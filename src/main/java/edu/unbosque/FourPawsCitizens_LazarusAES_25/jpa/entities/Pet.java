@@ -7,13 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-
-@PrimaryKeyJoinColumn
 @Table(name = "Pet")
-@NamedQueries({
-        @NamedQuery(name = "Pet.findAll",
-                query = "SELECT b FROM Pet b")
-})
 /**
  *  Class for Pets
  */
@@ -53,6 +47,7 @@ public class Pet {
 
     @OneToMany(mappedBy = "pet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Visit> visits = new HashSet<>();
+
 
     /**
      * Constructor Method
@@ -169,12 +164,13 @@ public class Pet {
     }
 
     public Set<Visit> getVisits() {
+
         return visits;
     }
 
     public void addVisits(Visit visit) {
         visits.add(visit);
-        visit.setPet(this);
+        visit.setPet_id(this);
     }
 
 }

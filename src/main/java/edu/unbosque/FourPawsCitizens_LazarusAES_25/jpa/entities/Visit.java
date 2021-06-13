@@ -28,7 +28,7 @@ public class Visit {
 
     @ManyToOne
     @JoinColumn(name = "pet_id")
-    private Pet pet;
+    private Pet pet_id;
 
 
     /**
@@ -93,11 +93,11 @@ public class Visit {
         this.vet = vet;
     }
 
-    public Pet getPet() {
-        return pet;
+    public Pet getPet_id() {
+        return pet_id;
     }
 
-    public void setPet(Pet pet) {
-        this.pet = pet;
+    public void setPet_id(Pet pet) {
+        this.pet_id = pet;
     }
 }
