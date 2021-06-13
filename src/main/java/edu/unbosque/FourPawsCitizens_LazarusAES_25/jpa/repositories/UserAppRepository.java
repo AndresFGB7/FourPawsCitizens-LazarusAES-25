@@ -10,4 +10,6 @@ public interface UserAppRepository {
 
     Optional<UserApp> save(UserApp user);
 
+    void edit(UserApp user);
+
 }

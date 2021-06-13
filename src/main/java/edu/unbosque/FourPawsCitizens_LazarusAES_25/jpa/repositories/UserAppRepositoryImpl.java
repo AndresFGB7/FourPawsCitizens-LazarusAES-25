@@ -1,6 +1,7 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories;
 
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.UserApp;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.UserApp;
 
 import javax.persistence.EntityManager;
 import java.util.Optional;
@@ -43,6 +44,23 @@ public class UserAppRepositoryImpl implements UserAppRepository {
             e.printStackTrace();
         }
         return Optional.empty();
+    }
+
+    @Override
+    public void edit(UserApp usera) {
+        UserApp userb = entityManager.find(UserApp.class,usera.getUsername());
+        if(userb != null){
+            try {
+                entityManager.getTransaction().begin();
+                userb.setEmail(usera.getEmail());
+                userb.setPassword(usera.getPassword());
+                userb.setRole(usera.getRole());
+                entityManager.getTransaction().commit();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
     }
 
 }
