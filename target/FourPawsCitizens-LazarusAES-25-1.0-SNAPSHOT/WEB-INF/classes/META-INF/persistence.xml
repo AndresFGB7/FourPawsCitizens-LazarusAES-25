@@ -9,10 +9,6 @@
         <class>edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.UserApp</class>
         <class>edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Owner</class>
         <class>edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Official</class>
-        <class>edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Vet</class>
-        <class>edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Pet</class>
-        <class>edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Visit</class>
-        <class>edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Case</class>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect" />

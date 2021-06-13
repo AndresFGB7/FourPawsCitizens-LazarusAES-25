@@ -1,7 +1,5 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.services;
 
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Pet;
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Vet;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Visit;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories.VisitRepository;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories.VisitRepositoryImpl;
@@ -46,14 +44,14 @@ public class VisitService {
      * Save in DB a Visit
      * @return an object (Visit)
      */
-    public Visit saveVisit(Integer visit_id, String created_id, String type, String description, Vet vet, Pet pet){
+    public Visit saveVisit(Integer visit_id, String created_id, String type, String description, Integer vet, Integer  pet_id){
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         visitRepository = new VisitRepositoryImpl(entityManager);
 
-        Visit visit = new Visit(visit_id,created_id,type,description,vet, pet);
+        Visit visit = new Visit(visit_id,created_id,type,description);
         Visit persistedVisit = visitRepository.save(visit).get();
 
         entityManager.close();

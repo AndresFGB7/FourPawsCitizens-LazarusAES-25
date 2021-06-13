@@ -28,19 +28,20 @@ public class OfficialService {
      * Get all the officials of DB
      * @return List of Official
      */
+
     public List<OfficialPOJO> listOfficial(){
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         officialRepository = new OfficialRepositoryImpl(entityManager);
-        List<Official> officials = officialRepository.findAll();
+        //List<Official> officials = officialRepository.findAll();
 
         entityManager.close();
         entityManagerFactory.close();
 
         List<OfficialPOJO> officialPOJOS = new ArrayList<>();
-        for (Official official : officials){
+        for (OfficialPOJO official : officialPOJOS){
             officialPOJOS.add(new OfficialPOJO());
         }
         return officialPOJOS;
@@ -64,7 +65,7 @@ public class OfficialService {
             return Optional.of(new OfficialPOJO(persistedOwner.get().getUsername(),
                     persistedOwner.get().getPassword(),
                     persistedOwner.get().getEmail(),
-                    persistedOwner.get().getName());
+                    persistedOwner.get().getName()));
         } else {
             return Optional.empty();
         }
@@ -72,14 +73,14 @@ public class OfficialService {
 
     /**
      * Delete a Official of the DB
-     * @param id: Integer -> ID to delete a Official
+     *
      */
     public void deleteOfficial(String username){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         officialRepository = new OfficialRepositoryImpl(entityManager);
-        officialRepository.deleteByUsername(username);
+        //officialRepository.deleteByUsername(username);
 
         entityManager.close();
         entityManagerFactory.close();
@@ -94,7 +95,7 @@ public class OfficialService {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         officialRepository = new OfficialRepositoryImpl(entityManager);
-        officialRepository.editOfficial( );
+       // officialRepository.editOfficial( );
 
         entityManager.close();
         entityManagerFactory.close();
