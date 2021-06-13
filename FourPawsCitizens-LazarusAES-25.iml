@@ -19,6 +19,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
+          <factory-entry name="LazarusAES_256" />
           <factory-entry name="tutorial" />
         </datasource-mapping>
         <naming-strategy-map />

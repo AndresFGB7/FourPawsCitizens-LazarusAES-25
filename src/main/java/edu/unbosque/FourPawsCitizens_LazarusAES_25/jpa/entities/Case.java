@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Case")
+@PrimaryKeyJoinColumn
 /**
  * Class for pet cases
  */
