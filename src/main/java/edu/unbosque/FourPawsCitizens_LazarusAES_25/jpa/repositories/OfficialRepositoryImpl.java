@@ -19,15 +19,17 @@ public class OfficialRepositoryImpl implements OfficialRepository{
      * @param oficial: Official
      */
     @Override
-    public Optional<Official> save(Official oficial) {
+    public String save(Official oficial) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(oficial);
             entityManager.getTransaction().commit();
-            return Optional.of(oficial);
+            System.out.println("Se guardo satisfactoriamente el Official");
+            return "Se guardo satisfactoriamente el Official";
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return Optional.empty();
+        System.out.println("No se logro guardar el Official");
+        return "No se logro guardar el Official";
     }
 }

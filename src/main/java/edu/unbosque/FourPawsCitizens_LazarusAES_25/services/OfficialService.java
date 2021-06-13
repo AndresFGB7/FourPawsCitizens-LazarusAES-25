@@ -1,7 +1,6 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.services;
 
 
-
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Official;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Official;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories.OfficialRepository;
@@ -24,30 +23,23 @@ public class OfficialService {
 
     OfficialRepository officialRepository;
 
-    public Optional<OfficialPOJO> saveOfficial(OfficialPOJO officialPOJO) {
+    public String saveOfficial(OfficialPOJO officialPOJO) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-
         officialRepository = new OfficialRepositoryImpl(entityManager);
 
-        Official official = new Official(officialPOJO.getUsername(), officialPOJO.getPassword(), officialPOJO.getEmail(), officialPOJO.getName());
-        Optional<Official> persistedOfficial = officialRepository.save(official);
+        Official official = new Official(
+                officialPOJO.getUsername(),
+                officialPOJO.getPassword(),
+                officialPOJO.getEmail(),
+                officialPOJO.getName());
+
+        String reply = officialRepository.save(official);
 
         entityManager.close();
         entityManagerFactory.close();
-/*
-        if (persistedOfficial.isPresent()) {
-            return Optional.of(new OfficialPOJO(
-                    persistedOfficial.get().getPassword(),
-                    persistedOfficial.get().getEmail(),
-                    persistedOfficial.get().getUsername(),
-                    persistedOfficial.get().getName()));
-        } else {
-            return Optional.empty();
-        }
-*/
-        return Optional.empty();
+        return reply;
 
     }
 }
