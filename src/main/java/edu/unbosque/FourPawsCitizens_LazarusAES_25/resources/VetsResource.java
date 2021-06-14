@@ -1,19 +1,19 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources;
 
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Vet;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Visit;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.filters.Logged;
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.OwnerPOJO;
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.VetPOJO;
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.services.OwnerService;
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.services.VetService;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.*;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.services.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Path("/vets")
+@Path("/vets/{username}")
 public class VetsResource {
 
     @Logged
@@ -32,21 +32,84 @@ public class VetsResource {
                 .build();
 
     }
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response create(VetPOJO vet) {
+    public Response createVet(@PathParam("username") String username,VetPOJO vetPOJO) {
+        vetPOJO.setUsername(username);
+        String reply = new VetService().saveVet(vetPOJO);
+        return Response.
+                status(Response.Status.CREATED)
+                .entity(reply)
+                .build();
+    }
 
-        Optional<VetPOJO> persistedVet = new VetService().saveVet(vet);
-        if (persistedVet.isPresent()) {
-            return Response.status(Response.Status.CREATED)
-                    .entity(persistedVet.get())
-                    .build();
-        } else {
-            return Response.serverError()
-                    .entity("Owner user could not be created")
-                    .build();
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response modifyVet(@PathParam("username") String username,VetPOJO vetPOJO) {
+        vetPOJO.setUsername(username);
+        String reply = new VetService().editVet(
+                vetPOJO.getUsername()
+                ,vetPOJO.getPassword()
+                ,vetPOJO.getEmail(),
+                vetPOJO.getName(),
+                vetPOJO.getAddress(),
+                vetPOJO.getNeighborhood());
+        return Response.status(Response.Status.OK).entity(reply).build();
+    }
+
+    @POST
+    @Path("/visit/pet/{pet_ID}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response createVisit(@PathParam("username") String username,@PathParam("pet_ID") Integer pet_ID, VisitPOJO visitPOJO){
+    visitPOJO.setVet_id(username);
+    visitPOJO.setPet_id(pet_ID);
+    String reply = new VisitService().saveVisit(visitPOJO);
+        return Response.
+                status(Response.Status.CREATED)
+                .entity(reply)
+                .build();
+    }
+
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listVisits(@PathParam("username") String username){
+        List<VisitPOJO> visitPOJOS = new VisitService().listVisit();
+        List<VisitPOJO> visits = new ArrayList<>();
+        for (VisitPOJO pojo : visitPOJOS){
+            if(pojo.getVet_id().equals(username)){
+                visits.add(new VisitPOJO(
+                        pojo.getVisit_id(),
+                        pojo.getCreated_at(),
+                        pojo.getType(),
+                        pojo.getDescription(),
+                        pojo.getVet_id(),
+                        pojo.getPet_id()
+                ));
+            }
         }
+        return Response.ok().entity(visits).build();
+    }
 
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response modifyVisit(@PathParam("username") String username, VisitPOJO visitPOJO) {
+        visitPOJO.setVet_id(username);
+        String reply = new VisitService().editVisit(visitPOJO.getVisit_id(),visitPOJO.getCreated_at(),visitPOJO.getType(),visitPOJO.getDescription(),visitPOJO.getVisit_id(),visitPOJO.getPet_id());
+        return Response.status(Response.Status.OK).entity(reply).build();
+    }
+
+    @DELETE
+    @Path("/visit/{visit_id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deletePet(@PathParam("visit_id") Integer visit_id) {
+        String reply = new VisitService().deleteVisit(visit_id);
+        return Response.status(Response.Status.OK).entity(reply).build();
     }
 }

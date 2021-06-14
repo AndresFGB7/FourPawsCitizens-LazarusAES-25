@@ -18,32 +18,26 @@ public class OwnerService {
 
     OwnerRepository ownerRepository;
 
-    public Optional<OwnerPOJO> createOwner(OwnerPOJO ownerPOJO) {
+    public String  createOwner(OwnerPOJO ownerPOJO) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         ownerRepository = new OwnerRepositoryImpl(entityManager);
 
-        Owner owner = new Owner(ownerPOJO.getUsername(), ownerPOJO.getPassword(), ownerPOJO.getEmail(),
-                ownerPOJO.getPersonId(), ownerPOJO.getName(), ownerPOJO.getAddress(), ownerPOJO.getNeighborhood());
-        Optional<Owner> persistedOwner = ownerRepository.save(owner);
+        Owner owner = new Owner(
+                ownerPOJO.getUsername(),
+                ownerPOJO.getPassword(),
+                ownerPOJO.getEmail(),
+                ownerPOJO.getPersonId(),
+                ownerPOJO.getName(),
+                ownerPOJO.getAddress(),
+                ownerPOJO.getNeighborhood());
+        String reply = ownerRepository.save(owner);
 
         entityManager.close();
         entityManagerFactory.close();
-
-        if (persistedOwner.isPresent()) {
-            return Optional.of(new OwnerPOJO(persistedOwner.get().getUsername(),
-                    persistedOwner.get().getPassword(),
-                    persistedOwner.get().getEmail(),
-                    persistedOwner.get().getPersonId(),
-                    persistedOwner.get().getName(),
-                    persistedOwner.get().getAddress(),
-                    persistedOwner.get().getNeighborhood()));
-        } else {
-            return Optional.empty();
-        }
-
+        return reply;
     }
 
     public Optional<OwnerPOJO> findOwner(Integer id){
@@ -65,7 +59,7 @@ public class OwnerService {
                     owners.get().getAddress(),
                     owners.get().getNeighborhood()));
         } else {
-            System.out.println("no encontro o no sirve pana");
+            System.out.println("non-existent owner");
             return Optional.empty();
         }
     }
@@ -88,25 +82,55 @@ public class OwnerService {
         return ownerPOJOS;
     }
 
-    public void editOwner(Integer id, String username, String password, String email, Long personId, String name, String adress, String neighborhood) {
+    public Optional<OwnerPOJO> findByUserName(String username){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-
         ownerRepository = new OwnerRepositoryImpl(entityManager);
-
-        ownerRepository.editOwner(id, username, password, email, personId, name, adress, neighborhood);
+        Optional<Owner> owners = ownerRepository.findByUsername(username);
 
         entityManager.close();
         entityManagerFactory.close();
+
+        if (owners.isPresent()) {
+            return Optional.of(new OwnerPOJO(owners.get().getUsername(),
+                    owners.get().getPassword(),
+                    owners.get().getEmail(),
+                    owners.get().getPersonId(),
+                    owners.get().getName(),
+                    owners.get().getAddress(),
+                    owners.get().getNeighborhood()));
+        } else {
+            System.out.println("non-existent owner");
+            return Optional.empty();
+        }
     }
 
-    public void deleteOwner(Integer id) {
+    public String editOwner(OwnerPOJO ownerPOJO) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        ownerRepository = new OwnerRepositoryImpl(entityManager);
+        String reply = ownerRepository.editOwner(ownerPOJO.getPersonId(),
+                ownerPOJO.getUsername(),
+                ownerPOJO.getPassword(),
+                ownerPOJO.getEmail(),
+                ownerPOJO.getName(),
+                ownerPOJO.getAddress(),
+                ownerPOJO.getNeighborhood());
+        entityManager.close();
+        entityManagerFactory.close();
+        return reply;
+
+    }
+
+    public String deleteOwner(String username) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         ownerRepository = new OwnerRepositoryImpl(entityManager);
-        ownerRepository.deleteById(id);
+        String reply =  ownerRepository.deleteByUserName(username);
         entityManager.close();
         entityManagerFactory.close();
+        return reply;
     }
 
 

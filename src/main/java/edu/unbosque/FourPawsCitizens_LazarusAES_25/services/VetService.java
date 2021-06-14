@@ -44,51 +44,40 @@ public class VetService {
         return vetPOJOS;
     }
 
-
     /**
      * Save in DB a Vet
      * @param vetPOJO: VetPOJO
      * @return an Optional of POJO
      */
-
-    public Optional<VetPOJO> saveVet(VetPOJO vetPOJO){
+    public String saveVet(VetPOJO vetPOJO){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         vetRepository = new VetRepositoryImpl(entityManager);
 
         Vet vet = new Vet(vetPOJO.getUsername(),vetPOJO.getPassword(),vetPOJO.getEmail(),vetPOJO.getName(),vetPOJO.getAddress(),vetPOJO.getNeighborhood());
-        Optional<Vet> persistedOwner = vetRepository.save(vet);
+        String reply = vetRepository.save(vet);
 
         entityManager.close();
         entityManagerFactory.close();
-
-        if (persistedOwner.isPresent()) {
-            return Optional.of(new VetPOJO(persistedOwner.get().getUsername(),
-                    persistedOwner.get().getPassword(),
-                    persistedOwner.get().getEmail(),
-                    persistedOwner.get().getName(),
-                    persistedOwner.get().getAddress(),
-                    persistedOwner.get().getNeighborhood()));
-        } else {
-            return Optional.empty();
-        }
-
+        return reply;
     }
 
     /**
      * Delete a Vet of the DB
      * @param username: String -> ID to delete a Vet
      */
-    public void deleteVet(String username){
+    public String deleteVet(String username){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         vetRepository = new VetRepositoryImpl(entityManager);
-        vetRepository.deleteByUserName(username);
+        String reply = vetRepository.deleteByUserName(username);
 
         entityManager.close();
         entityManagerFactory.close();
+
+        return reply;
     }
 
     /**
@@ -100,15 +89,17 @@ public class VetService {
      * @param address: String
      * @param neighborhood: String
      */
-    public void  editVet(String username,String password, String email, String name, String address, String neighborhood){
+    public String  editVet(String username,String password, String email, String name, String address, String neighborhood){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         vetRepository = new VetRepositoryImpl(entityManager);
-        vetRepository.editVet(username, password,  email,  name, address,  neighborhood);
+        String reply = vetRepository.editVet(username, password,  email,  name, address,  neighborhood);
 
         entityManager.close();
         entityManagerFactory.close();
+
+        return reply;
     }
 
 }

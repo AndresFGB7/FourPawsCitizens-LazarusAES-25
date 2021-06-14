@@ -22,21 +22,28 @@ public class PetService {
     PetRepository petRepository;
     OwnerRepository ownerRepository;
 
-    public Optional<Pet> createPet(PetPOJO petPOJO) {
+    public String createPet(PetPOJO petPOJO) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         petRepository = new PetRepositoryImpl(entityManager);
         ownerRepository = new OwnerRepositoryImpl(entityManager);
 
         Optional<Owner> owner = ownerRepository.findById(petPOJO.getOwner_id());
-        owner.ifPresent(a -> {
-            a.addPets(new Pet(petPOJO.getPet_id(), petPOJO.getMicrochip(), petPOJO.getName(), petPOJO.getSpecies(), petPOJO.getRace(), petPOJO.getSize(), petPOJO.getSex(), petPOJO.getPicture()));
-            ownerRepository.save(a);
-        });
+        if (!owner.isPresent()) return "The owner does not exist";
+        Pet pet  = new Pet(
+                petPOJO.getPet_id(),
+                petPOJO.getMicrochip(),
+                petPOJO.getName(),
+                petPOJO.getSpecies(),
+                petPOJO.getRace(),
+                petPOJO.getSize(),
+                petPOJO.getSex(),
+                petPOJO.getPicture());
+        owner.get().addPets(pet);
+        ownerRepository.save(owner.get());
         entityManager.close();
         entityManagerFactory.close();
-
-        return Optional.empty();
+        return "The pet was successfully created";
     }
 
     public Optional<PetPOJO> findPet(Integer id) {
@@ -50,9 +57,7 @@ public class PetService {
         entityManagerFactory.close();
 
         if (pet.isPresent()) {
-           Integer id2 = Math.toIntExact(pet.get().getOwner_id().getPersonId());
-            System.out.println("este es el id perroooooo " + id2);
-            return Optional.of(new PetPOJO(pet.get().getPet_id(), pet.get().getMicrochip(), pet.get().getName(), pet.get().getSpecies(), pet.get().getRace(), pet.get().getSize(), pet.get().getSex(), pet.get().getPicture(), id2));
+            return Optional.of(new PetPOJO(pet.get().getPet_id(), pet.get().getMicrochip(), pet.get().getName(), pet.get().getSpecies(), pet.get().getRace(), pet.get().getSize(), pet.get().getSex(), pet.get().getPicture(), pet.get().getOwner_id().getUsername()));
         }
         System.out.println("no encuentra eso perroooo");
         return Optional.empty();
@@ -70,32 +75,36 @@ public class PetService {
 
         List<PetPOJO> petPOJOS = new ArrayList<>();
         for(Pet pet : pets){
-            petPOJOS.add(new PetPOJO(pet.getPet_id(),pet.getMicrochip(),pet.getName(),pet.getSpecies(),pet.getRace(),pet.getSize(),pet.getSex(),pet.getPicture(),Math.toIntExact(pet.getOwner_id().getPersonId())));
+            petPOJOS.add(new PetPOJO(pet.getPet_id(),pet.getMicrochip(),pet.getName(),pet.getSpecies(),pet.getRace(),pet.getSize(),pet.getSex(),pet.getPicture(),pet.getOwner_id().getUsername()));
         }
 
         return petPOJOS;
     }
 
-    public void editPet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture){
+    public String editPet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         petRepository = new PetRepositoryImpl(entityManager);
 
-        petRepository.editPet(pet_id,microship,name,species,race,size,sex,picture);
+        String reply = petRepository.editPet(pet_id,microship,name,species,race,size,sex,picture);
 
         entityManager.close();
         entityManagerFactory.close();
+
+        return reply;
     }
 
-    public void deletePet(Integer id){
+    public String deletePet(Integer id){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         petRepository = new PetRepositoryImpl(entityManager);
 
-        petRepository.deleteById(id);
+        String reply = petRepository.deleteById(id);
 
         entityManager.close();
         entityManagerFactory.close();
+
+        return reply;
     }
 
 }

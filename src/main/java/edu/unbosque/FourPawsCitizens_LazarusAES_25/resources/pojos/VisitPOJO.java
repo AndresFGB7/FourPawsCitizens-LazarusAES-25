@@ -16,7 +16,7 @@ public class VisitPOJO {
 
     private String description;
 
-    private Integer vet_id;
+    private String vet_id;
 
     private Integer pet_id;
     /**
@@ -34,7 +34,7 @@ public class VisitPOJO {
      * @param description: String
      * @param vet_id: Integer
      */
-    public VisitPOJO(Integer visit_id, String created_id, String type, String description, Integer vet_id, Integer pet_id) {
+    public VisitPOJO(Integer visit_id, String created_id, String type, String description, String vet_id, Integer pet_id) {
         this.visit_id = visit_id;
         this.created_at = created_id;
         this.type = type;
@@ -75,11 +75,11 @@ public class VisitPOJO {
         this.description = description;
     }
 
-    public Integer getVet_id() {
+    public String getVet_id() {
         return vet_id;
     }
 
-    public void setVet_id(Integer vet_id) {
+    public void setVet_id(String vet_id) {
         this.vet_id = vet_id;
     }
 

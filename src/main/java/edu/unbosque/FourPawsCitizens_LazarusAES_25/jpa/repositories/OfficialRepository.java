@@ -6,6 +6,6 @@ import java.util.Optional;
 
 public interface OfficialRepository {
 
-     Optional<Official> save(Official oficial);
+     public String  save(Official oficial);
 
 }

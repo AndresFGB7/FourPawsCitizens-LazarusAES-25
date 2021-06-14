@@ -22,22 +22,24 @@ public class CaseService {
     CaseRepository caseRepository;
 
 
-    public Optional<CasePOJO> createCase(Case aCase){
+    public String createCase(CasePOJO casePOJO){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         petRepository = new PetRepositoryImpl(entityManager);
 
-
-        Optional<Pet> pet = petRepository.findById(aCase.getPet_id().getPet_id());
-        pet.ifPresent(a-> {
-            a.addCases(new Case(aCase.getCreated_at(),aCase.getType(),aCase.getDescription()));
-            petRepository.save(a);
-        });
+        Optional<Pet> pet = petRepository.findById(casePOJO.getPet_id());
+        if (!pet.isPresent()) return "The pet does not exist";
+        Case aCase = new Case(
+                casePOJO.getCreated_at(),
+                casePOJO.getType(),
+                casePOJO.getDescription());
+        pet.get().addCases(aCase);
+        petRepository.save(pet.get());
         entityManager.close();
         entityManagerFactory.close();
 
-        return Optional.empty();
+        return "The caase was successfully created";
 
     }
 
@@ -71,26 +73,30 @@ public class CaseService {
         return casePOJOS;
     }
 
-    public void editCase(Integer id, String created_at, String type, String description){
+    public String editCase(Integer id, String created_at, String type, String description){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         caseRepository = new CaseRepositoryImpl(entityManager);
 
-        caseRepository.editCase(id,created_at,type,description);
+        String reply = caseRepository.editCase(id,created_at,type,description);
 
         entityManager.close();
         entityManagerFactory.close();
+
+        return reply;
     }
 
-    public void deleteCase(Integer id){
+    public String deleteCase(Integer id){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         caseRepository = new CaseRepositoryImpl(entityManager);
 
-        caseRepository.deleteById(id);
+        String reply = caseRepository.deleteById(id);
 
         entityManager.close();
         entityManagerFactory.close();
+
+        return  reply;
     }
 
 }

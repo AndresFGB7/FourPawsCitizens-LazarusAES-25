@@ -8,13 +8,15 @@ import java.util.Optional;
 
 public interface OwnerRepository {
 
-    Optional<Owner> save(Owner owner);
+    public String save(Owner owner);
 
-    Optional<Owner> findById(Integer id);
+    Optional<Owner> findById(String id);
 
     List<Owner> findAll();
 
-    void deleteById(Integer id);
+    public Optional<Owner> findByUsername(String username);
 
-    void editOwner (Integer id,String username, String password, String email, Long personId, String name, String adress,String neighborhood);
+    String deleteByUserName(String Username);
+
+    public String editOwner(Long id, String username, String password, String email, String name, String adress, String neighborhood);
 }

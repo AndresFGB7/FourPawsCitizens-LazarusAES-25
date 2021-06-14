@@ -23,15 +23,16 @@ public class VisitRepositoryImpl implements VisitRepository {
    * @return Optional of Visit
    */
   @Override
-  public Optional<Visit> save(Visit visit) {
+  public String save(Visit visit) {
     try {
       entityManager.getTransaction().begin();
       entityManager.persist(visit);
       entityManager.getTransaction().commit();
+      return "visit was successfully created";
     }catch (Exception e) {
       e.printStackTrace();
     }
-    return Optional.empty();
+    return "the visit could not be created";
   }
   /**
    * Find by id a Visit
@@ -59,17 +60,19 @@ public class VisitRepositoryImpl implements VisitRepository {
    * @param id: Integer
    */
   @Override
-  public void deleteById(Integer id) {
+  public String deleteById(Integer id) {
     Visit visit = entityManager.find(Visit.class, id);
     if (visit != null) {
       try {
         entityManager.getTransaction().begin();
         entityManager.remove(visit);
         entityManager.getTransaction().commit();
+        return "the visit was successfully removed";
       } catch (Exception e) {
         e.printStackTrace();
       }
     }
+    return "the visit could not be deleted";
   }
 
   /**
@@ -82,7 +85,7 @@ public class VisitRepositoryImpl implements VisitRepository {
    * @param pet_id: Integer
    */
   @Override
-  public void editVisit(Integer id, String created_at, String type, String description, Integer vet_id, Integer pet_id) {
+  public String editVisit(Integer id, String created_at, String type, String description, Integer vet_id, Integer pet_id) {
     Visit visit = entityManager.find(Visit.class,pet_id);
     if(visit != null){
       try {
@@ -91,10 +94,12 @@ public class VisitRepositoryImpl implements VisitRepository {
         visit.setType(type);
         visit.setDescription(description);
         entityManager.getTransaction().commit();
+        return "the visit was correctly edited";
       }catch (Exception e){
         e.printStackTrace();
       }
 
     }
+    return "the visit could not be edited";
   }
 }

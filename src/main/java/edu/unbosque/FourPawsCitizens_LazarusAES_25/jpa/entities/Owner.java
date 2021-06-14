@@ -16,6 +16,7 @@ public class Owner extends UserApp {
     @Column(name = "username", unique = true)
     private String username;
 
+    @GeneratedValue
     @Column(name = "owner_id", nullable = false, unique = true)
     private Long personId;
 
