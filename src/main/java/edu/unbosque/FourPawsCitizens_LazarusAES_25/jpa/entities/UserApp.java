@@ -8,7 +8,7 @@ import javax.persistence.*;
 /**
  *  Abstract Class for Users (Owners, Vets, Officials)
  */
-public abstract class UserApp {
+public class UserApp {
 
     @Id
     @Column(name = "username")
