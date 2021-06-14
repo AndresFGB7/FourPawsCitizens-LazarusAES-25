@@ -40,7 +40,7 @@ public class OwnerService {
         return reply;
     }
 
-    public Optional<OwnerPOJO> findOwner(Integer id){
+    public Optional<OwnerPOJO> findOwner(String id){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         ownerRepository = new OwnerRepositoryImpl(entityManager);

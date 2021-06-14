@@ -40,6 +40,5 @@ public class OfficialService {
         entityManager.close();
         entityManagerFactory.close();
         return reply;
-
     }
 }
