@@ -3,7 +3,7 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos;
 /**
  * POJO base class, for users
  */
-public class UserAppPOJO {
+public class     UserAppPOJO {
 
     private String username;
 

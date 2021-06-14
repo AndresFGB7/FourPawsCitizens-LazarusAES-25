@@ -1,8 +1,9 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.services;
 
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.UserApp;
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories.UserAppRepository;
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories.UserAppRepositoryImpl;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.*;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories.*;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.PetPOJO;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.UserAppPOJO;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -36,6 +37,29 @@ public class UserAppService {
         }
 
         return Optional.empty();
+
+    }
+    public Optional<UserAppPOJO> saveUserApp(UserAppPOJO userAppPOJO){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        userAppRepository = new UserAppRepositoryImpl(entityManager);
+
+        UserApp userApp = new UserApp(userAppPOJO.getUsername(),userAppPOJO.getPassword(),userAppPOJO.getEmail(),userAppPOJO.getRole());
+        Optional<UserApp> persistedOwner = userAppRepository.save(userApp);
+
+        entityManager.close();
+        entityManagerFactory.close();
+
+        if (persistedOwner.isPresent()) {
+            return Optional.of(new UserAppPOJO(
+                    persistedOwner.get().getUsername(),
+                    persistedOwner.get().getPassword(),
+                    persistedOwner.get().getEmail(),
+                    persistedOwner.get().getRole()));
+        } else {
+            return Optional.empty();
+        }
 
     }
 
