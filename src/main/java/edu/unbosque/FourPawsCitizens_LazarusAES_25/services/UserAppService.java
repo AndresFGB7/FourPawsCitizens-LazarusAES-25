@@ -16,7 +16,7 @@ public class UserAppService {
 
     UserAppRepository userAppRepository;
 
-    public Optional<String> validateUser( String username, String password ) {
+    public Optional<String> validateUser(String username, String password) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -39,28 +39,20 @@ public class UserAppService {
         return Optional.empty();
 
     }
-    public Optional<UserAppPOJO> saveUserApp(UserAppPOJO userAppPOJO){
+
+    public String saveUserApp(UserAppPOJO userAppPOJO) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         userAppRepository = new UserAppRepositoryImpl(entityManager);
 
-        UserApp userApp = new UserApp(userAppPOJO.getUsername(),userAppPOJO.getPassword(),userAppPOJO.getEmail(),userAppPOJO.getRole());
-        Optional<UserApp> persistedOwner = userAppRepository.save(userApp);
+        UserApp userApp = new UserApp(userAppPOJO.getUsername(), userAppPOJO.getPassword(), userAppPOJO.getEmail(), userAppPOJO.getRole());
+        String reply = userAppRepository.save(userApp);
 
         entityManager.close();
         entityManagerFactory.close();
 
-        if (persistedOwner.isPresent()) {
-            return Optional.of(new UserAppPOJO(
-                    persistedOwner.get().getUsername(),
-                    persistedOwner.get().getPassword(),
-                    persistedOwner.get().getEmail(),
-                    persistedOwner.get().getRole()));
-        } else {
-            return Optional.empty();
-        }
-
+        return reply;
     }
 
 }

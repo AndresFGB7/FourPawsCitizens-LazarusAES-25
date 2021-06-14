@@ -1,10 +1,9 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.services;
 
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Owner;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.UserApp;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Vet;
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories.OwnerRepositoryImpl;
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories.VetRepository;
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories.VetRepositoryImpl;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories.*;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.OwnerPOJO;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.VetPOJO;
 
@@ -21,6 +20,7 @@ import java.util.Optional;
 public class VetService {
 
     VetRepository vetRepository;
+    UserAppRepository userAppRepository;
 
     /**
      *
@@ -39,7 +39,7 @@ public class VetService {
 
         List<VetPOJO> vetPOJOS = new ArrayList<>();
         for (Vet vet : vets){
-            vetPOJOS.add(new VetPOJO(vet.getUsername(),vet.getPassword(),vet.getEmail() ,vet.getName(),vet.getAddress(),vet.getNeighborhood()));
+            vetPOJOS.add(new VetPOJO(vet.getUserApp().getUsername(),vet.getName(),vet.getAddress(),vet.getNeighborhood()));
         }
         return vetPOJOS;
     }
@@ -54,10 +54,17 @@ public class VetService {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         vetRepository = new VetRepositoryImpl(entityManager);
+        userAppRepository = new UserAppRepositoryImpl(entityManager);
 
-        Vet vet = new Vet(vetPOJO.getUsername(),vetPOJO.getPassword(),vetPOJO.getEmail(),vetPOJO.getName(),vetPOJO.getAddress(),vetPOJO.getNeighborhood());
-        String reply = vetRepository.save(vet);
+        Optional<UserApp> user = userAppRepository.findByUsername(vetPOJO.getUsername());
+        if (!user.isPresent()) return "The user does not exist";
 
+        Vet vet = new Vet(
+                vetPOJO.getName(),
+                vetPOJO.getAddress(),
+                vetPOJO.getNeighborhood());
+        user.get().setVet(vet);
+        String reply = userAppRepository.save(user.get());
         entityManager.close();
         entityManagerFactory.close();
         return reply;
@@ -83,18 +90,16 @@ public class VetService {
     /**
      * Edit a Vet of the DB
      * @param username: String -> ID to delete a Vet
-     * @param password: String
-     * @param email: String
      * @param name: String
      * @param address: String
      * @param neighborhood: String
      */
-    public String  editVet(String username,String password, String email, String name, String address, String neighborhood){
+    public String  editVet(String username, String name, String address, String neighborhood){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         vetRepository = new VetRepositoryImpl(entityManager);
-        String reply = vetRepository.editVet(username, password,  email,  name, address,  neighborhood);
+        String reply = vetRepository.editVet(username,  name, address,  neighborhood);
 
         entityManager.close();
         entityManagerFactory.close();

@@ -6,11 +6,16 @@ import java.util.List;
 
 @Entity
 @Table(name = "Vet")
-@PrimaryKeyJoinColumn
+
 /**
  *  Class for Vet Users extends UserApp
  */
-public class Vet extends UserApp{
+public class Vet{
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @Id
+    @JoinColumn(name = "username")
+    private UserApp userApp;
 
     @GeneratedValue
     @Column(name = "vet_id", nullable = false)
@@ -37,18 +42,22 @@ public class Vet extends UserApp{
 
     /**
      * Second constructor method  of Vet with params
-     * @param username: String
-     * @param password: String
-     * @param email: String
      * @param name: String
      * @param address: String
      * @param neighborhood: String
      */
-    public Vet(String username, String password, String email, String name, String address, String neighborhood) {
-        super(username, password, email, "vet");
+    public Vet(String name, String address, String neighborhood) {
         this.name = name;
         this.address = address;
         this.neighborhood = neighborhood;
+    }
+
+    public UserApp getUserApp() {
+        return userApp;
+    }
+
+    public void setUserApp(UserApp userApp) {
+        this.userApp = userApp;
     }
 
     public Integer getVet_id() {

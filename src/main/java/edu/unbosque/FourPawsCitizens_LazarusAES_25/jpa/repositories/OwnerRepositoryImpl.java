@@ -70,8 +70,8 @@ public class OwnerRepositoryImpl implements OwnerRepository {
     public Optional<Owner> findByUsername(String username) {
         List<Owner> owners = findAll();
         for (Owner owner : owners){
-            if(owner.getUsername().equals(username)){
-              return Optional.of(new Owner(owner.getUsername(),owner.getPassword(),owner.getEmail(),owner.getPersonId(),owner.getName(),owner.getAddress(),owner.getNeighborhood()));
+            if(owner.getUserApp().getUsername().equals(username)){
+              return Optional.of(owner);
             }
         }
         return Optional.empty();
@@ -110,20 +110,16 @@ public class OwnerRepositoryImpl implements OwnerRepository {
      *
      * @param id:           Integer
      * @param username:     String
-     * @param password:     String
-     * @param email:        String
      * @param name:         String
      * @param adress:       String
      * @param neighborhood: String
      */
     @Override
-    public String editOwner(Long id, String username, String password, String email, String name, String adress, String neighborhood) {
+    public String editOwner(Integer id, String username, String name, String adress, String neighborhood) {
         Owner owner = entityManager.find(Owner.class, username);
         if (owner != null) {
             try {
                 entityManager.getTransaction().begin();
-                owner.setPassword(password);
-                owner.setEmail(email);
                 owner.setName(name);
                 owner.setAddress(adress);
                 owner.setNeighborhood(neighborhood);

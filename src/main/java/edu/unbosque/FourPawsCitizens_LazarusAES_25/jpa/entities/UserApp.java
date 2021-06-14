@@ -4,14 +4,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "UserApp")
-@Inheritance(strategy = InheritanceType.JOINED)
 /**
  *  Abstract Class for Users (Owners, Vets, Officials)
  */
 public class UserApp {
 
     @Id
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
 
     @Column(name = "password", nullable = false)
@@ -20,8 +19,17 @@ public class UserApp {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "role", nullable = false)
+    @Column(name = "role")
     private String role;
+
+    @OneToOne(mappedBy = "userApp")
+    private Owner owner;
+
+    @OneToOne(mappedBy = "userApp")
+    private Official official;
+
+    @OneToOne(mappedBy = "userApp")
+    private Vet vet;
 
     /**
      * Constructor Method
@@ -74,6 +82,30 @@ public class UserApp {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+    public Official getOfficial() {
+        return official;
+    }
+
+    public void setOfficial(Official official) {
+        this.official = official;
+    }
+
+    public Vet getVet() {
+        return vet;
+    }
+
+    public void setVet(Vet vet) {
+        this.vet = vet;
     }
 
     @Override

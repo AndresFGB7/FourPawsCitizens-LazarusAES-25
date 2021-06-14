@@ -51,9 +51,7 @@ public class VetsResource {
     public Response modifyVet(@PathParam("username") String username,VetPOJO vetPOJO) {
         vetPOJO.setUsername(username);
         String reply = new VetService().editVet(
-                vetPOJO.getUsername()
-                ,vetPOJO.getPassword()
-                ,vetPOJO.getEmail(),
+                vetPOJO.getUsername(),
                 vetPOJO.getName(),
                 vetPOJO.getAddress(),
                 vetPOJO.getNeighborhood());

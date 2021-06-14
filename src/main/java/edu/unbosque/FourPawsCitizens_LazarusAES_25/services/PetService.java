@@ -57,7 +57,7 @@ public class PetService {
         entityManagerFactory.close();
 
         if (pet.isPresent()) {
-            return Optional.of(new PetPOJO(pet.get().getPet_id(), pet.get().getMicrochip(), pet.get().getName(), pet.get().getSpecies(), pet.get().getRace(), pet.get().getSize(), pet.get().getSex(), pet.get().getPicture(), pet.get().getOwner_id().getUsername()));
+            return Optional.of(new PetPOJO(pet.get().getPet_id(), pet.get().getMicrochip(), pet.get().getName(), pet.get().getSpecies(), pet.get().getRace(), pet.get().getSize(), pet.get().getSex(), pet.get().getPicture(), pet.get().getOwner_id().getUserApp().getUsername()));
         }
         System.out.println("no encuentra eso perroooo");
         return Optional.empty();
@@ -75,7 +75,7 @@ public class PetService {
 
         List<PetPOJO> petPOJOS = new ArrayList<>();
         for(Pet pet : pets){
-            petPOJOS.add(new PetPOJO(pet.getPet_id(),pet.getMicrochip(),pet.getName(),pet.getSpecies(),pet.getRace(),pet.getSize(),pet.getSex(),pet.getPicture(),pet.getOwner_id().getUsername()));
+            petPOJOS.add(new PetPOJO(pet.getPet_id(),pet.getMicrochip(),pet.getName(),pet.getSpecies(),pet.getRace(),pet.getSize(),pet.getSex(),pet.getPicture(),pet.getOwner_id().getUserApp().getUsername()));
         }
 
         return petPOJOS;

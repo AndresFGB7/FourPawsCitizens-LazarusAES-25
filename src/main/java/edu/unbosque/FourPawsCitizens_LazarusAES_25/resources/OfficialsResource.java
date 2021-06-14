@@ -12,12 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Path("/officials")
+@Path("/officials/{username}")
 public class OfficialsResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response create(OfficialPOJO officialPOJO) {
+    public Response create(@PathParam("username") String username,OfficialPOJO officialPOJO) {
+        officialPOJO.setUsername(username);
         String reply = new OfficialService().saveOfficial(officialPOJO);
         return Response.
                 status(Response.Status.CREATED)
@@ -58,7 +59,7 @@ public class OfficialsResource {
         List<OwnerPOJO> ownerNe = new ArrayList<>();
         for (OwnerPOJO pojo : ownerPOJOS) {
             if (pojo.getNeighborhood().equals(Neighborhood)) {
-                ownerNe.add(new OwnerPOJO(pojo.getUsername(), pojo.getPassword(), pojo.getEmail(), pojo.getPersonId(), pojo.getName(), pojo.getAddress(), pojo.getNeighborhood()));
+                ownerNe.add(new OwnerPOJO(pojo.getUsername(), pojo.getPersonId(), pojo.getName(), pojo.getAddress(), pojo.getNeighborhood()));
             }
         }
         return Response.ok().entity(ownerNe).build();

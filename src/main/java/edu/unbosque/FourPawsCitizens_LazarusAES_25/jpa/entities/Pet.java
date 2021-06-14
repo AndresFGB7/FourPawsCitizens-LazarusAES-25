@@ -39,7 +39,7 @@ public class Pet {
     private String picture;
 
     @ManyToOne
-    @JoinColumn(name = "username")
+    @JoinColumn(name = "person_Id")
     private Owner owner;
 
     @OneToMany(mappedBy = "pet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

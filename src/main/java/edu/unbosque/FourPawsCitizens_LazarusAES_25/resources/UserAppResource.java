@@ -21,16 +21,10 @@ public class UserAppResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(UserAppPOJO userAppPOJO) {
-        Optional<UserAppPOJO> persistedUserApp = new UserAppService().saveUserApp(userAppPOJO);
-        if (persistedUserApp.isPresent()) {
-            return Response.status(Response.Status.CREATED)
-                    .entity(persistedUserApp.get())
-                    .build();
-        } else {
-            return Response.serverError()
-                    .entity("User user could not be created")
-                    .build();
-        }
+        String reply = new UserAppService().saveUserApp(userAppPOJO);
+        return Response.status(Response.Status.CREATED)
+                .entity(reply)
+                .build();
 
     }
 }

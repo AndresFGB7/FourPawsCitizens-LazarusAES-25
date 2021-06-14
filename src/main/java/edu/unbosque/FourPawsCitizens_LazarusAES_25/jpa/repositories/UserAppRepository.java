@@ -8,7 +8,7 @@ public interface UserAppRepository {
 
     Optional<UserApp> findByUsername(String username);
 
-    Optional<UserApp> save(UserApp user);
+    String save(UserApp user);
 
     void edit(UserApp user);
 

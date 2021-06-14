@@ -1,17 +1,18 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Official")
-@PrimaryKeyJoinColumn
 /**
  *  Class for Official Users extends UserApp
  */
-public class Official extends UserApp {
+public class Official  {
+
+    @Id
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "username")
+    private UserApp userApp;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -24,14 +25,18 @@ public class Official extends UserApp {
 
     /**
      * Second constructor method  of Official with params
-     * @param username: String Key  User Name
-     * @param password: String pass
-     * @param email: String email
      * @param name: String name
      */
-    public Official(String username, String password, String email, String name) {
-        super(username, password, email, "official");
+    public Official(String name) {
         this.name = name;
+    }
+
+    public UserApp getUserApp() {
+        return userApp;
+    }
+
+    public void setUserApp(UserApp userApp) {
+        this.userApp = userApp;
     }
 
     public String getName() {

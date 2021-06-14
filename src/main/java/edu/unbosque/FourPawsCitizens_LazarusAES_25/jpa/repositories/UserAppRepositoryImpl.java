@@ -34,16 +34,16 @@ public class UserAppRepositoryImpl implements UserAppRepository {
      * @return Optional of User
      */
     @Override
-    public Optional<UserApp> save(UserApp user) {
+    public String save(UserApp user) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(user);
             entityManager.getTransaction().commit();
-            return Optional.of(user);
+            return "The User was successfully created";
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return Optional.empty();
+        return "The User was not created";
     }
 
     @Override
