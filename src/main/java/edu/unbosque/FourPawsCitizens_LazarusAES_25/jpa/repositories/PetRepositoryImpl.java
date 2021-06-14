@@ -23,15 +23,18 @@ public class PetRepositoryImpl implements PetRepository{
      * @return Optional of Pet
      */
     @Override
-    public Optional<Pet> save(Pet pet) {
+    public String save(Pet pet) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(pet);
             entityManager.getTransaction().commit();
+            System.out.println("The pet was successfully created");
+            return "The pet was successfully created";
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return Optional.empty();
+        System.out.println("The pet could not be created");
+        return "The pet could not be created";
     }
 
     /**
@@ -67,7 +70,7 @@ public class PetRepositoryImpl implements PetRepository{
      * @param picture
      */
     @Override
-    public void editPet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture) {
+    public String editPet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture) {
 
         Pet pet = entityManager.find(Pet.class,pet_id);
         if(pet != null){
@@ -81,11 +84,13 @@ public class PetRepositoryImpl implements PetRepository{
                 pet.setSex(sex);
                 pet.setPicture(picture);
                 entityManager.getTransaction().commit();
+                return "successful pet edit";
             }catch (Exception e){
                 e.printStackTrace();
             }
 
         }
+        return "the pet edition could not be done";
     }
 
     /**
@@ -94,16 +99,18 @@ public class PetRepositoryImpl implements PetRepository{
      * @param id: Integer
      */
     @Override
-    public void deleteById(Integer id) {
+    public String deleteById(Integer id) {
         Pet pet = entityManager.find(Pet.class, id);
         if (pet != null) {
             try {
                 entityManager.getTransaction().begin();
                 entityManager.remove(pet);
                 entityManager.getTransaction().commit();
+                return "the pet was successfully removed";
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+        return "could not delete pet";
     }
 }

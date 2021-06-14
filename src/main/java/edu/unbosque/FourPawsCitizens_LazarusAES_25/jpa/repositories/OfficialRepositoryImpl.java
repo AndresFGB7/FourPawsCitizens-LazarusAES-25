@@ -24,12 +24,12 @@ public class OfficialRepositoryImpl implements OfficialRepository{
             entityManager.getTransaction().begin();
             entityManager.persist(oficial);
             entityManager.getTransaction().commit();
-            System.out.println("Se guardo satisfactoriamente el Official");
-            return "Se guardo satisfactoriamente el Official";
+            System.out.println("The Official was successfully saved");
+            return "The Official was successfully saved";
         }catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("No se logro guardar el Official");
-        return "No se logro guardar el Official";
+        System.out.println("Unable to save the Official");
+        return "Unable to save the Official";
     }
 }

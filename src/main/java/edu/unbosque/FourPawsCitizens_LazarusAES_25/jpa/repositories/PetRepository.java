@@ -6,14 +6,14 @@ import java.util.Optional;
 
 public interface PetRepository {
 
-    Optional<Pet> save(Pet pet);
+    public String save(Pet pet);
 
     Optional<Pet> findById(Integer id);
 
     List<Pet> findAll();
 
-    void editPet(Integer pet_id,String microship,String name,String species,String race,String size,String sex,String picture);
+    String editPet(Integer pet_id,String microship,String name,String species,String race,String size,String sex,String picture);
 
-    void deleteById(Integer id);
+    String deleteById(Integer id);
 
 }

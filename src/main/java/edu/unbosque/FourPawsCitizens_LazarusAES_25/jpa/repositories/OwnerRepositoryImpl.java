@@ -25,16 +25,18 @@ public class OwnerRepositoryImpl implements OwnerRepository {
      * @return Optional of Owner
      */
     @Override
-    public Optional<Owner> save(Owner owner) {
+    public String save(Owner owner) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(owner);
             entityManager.getTransaction().commit();
-            return Optional.of(owner);
+            System.out.println("It was successfully saved by the owner");
+            return "It was successfully saved by the owner";
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return Optional.empty();
+        System.out.println("The owner could not be saved");
+        return "The owner could not be saved";
     }
 
     /**
@@ -44,7 +46,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
      * @return Optional of Owner
      */
     @Override
-    public Optional<Owner> findById(Integer id) {
+    public Optional<Owner> findById(String id) {
         Owner owner = entityManager.find(Owner.class, id);
         return owner != null ? Optional.of(owner) : Optional.empty();
     }
@@ -60,13 +62,29 @@ public class OwnerRepositoryImpl implements OwnerRepository {
     }
 
     /**
-     * Delete by id an owner
+     * Find owner by username
      *
-     * @param id: Integer
+     * @return List of all Owners
      */
     @Override
-    public void deleteById(Integer id) {
-        Owner owner = entityManager.find(Owner.class, id);
+    public Optional<Owner> findByUsername(String username) {
+        List<Owner> owners = findAll();
+        for (Owner owner : owners){
+            if(owner.getUsername().equals(username)){
+              return Optional.of(new Owner(owner.getUsername(),owner.getPassword(),owner.getEmail(),owner.getPersonId(),owner.getName(),owner.getAddress(),owner.getNeighborhood()));
+            }
+        }
+        return Optional.empty();
+    }
+
+    /**
+     * Delete by id an owner
+     *
+     * @param Username: String
+     */
+    @Override
+    public  String deleteByUserName(String Username) {
+        Owner owner = entityManager.find(Owner.class, Username);
         if (owner != null) {
             try {
 
@@ -78,12 +96,13 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 
                 entityManager.remove(owner);
                 entityManager.getTransaction().commit();
+                return "owner was successfully removed";
 
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("No elimino Owner");
             }
         }
+        return "the user could not be removed";
     }
 
     /**
@@ -93,31 +112,27 @@ public class OwnerRepositoryImpl implements OwnerRepository {
      * @param username:     String
      * @param password:     String
      * @param email:        String
-     * @param personId:     Long
      * @param name:         String
      * @param adress:       String
      * @param neighborhood: String
      */
     @Override
-    public void editOwner(Integer id, String username, String password, String email, Long personId, String name, String adress, String neighborhood) {
-        List x = new ArrayList();
-        x.add(id);
-        x.add(username);
-        Owner owner = entityManager.find(Owner.class, x);
+    public String editOwner(Long id, String username, String password, String email, String name, String adress, String neighborhood) {
+        Owner owner = entityManager.find(Owner.class, username);
         if (owner != null) {
             try {
                 entityManager.getTransaction().begin();
                 owner.setPassword(password);
                 owner.setEmail(email);
+                owner.setName(name);
                 owner.setAddress(adress);
                 owner.setNeighborhood(neighborhood);
-                owner.setName(name);
                 entityManager.getTransaction().commit();
+                return  "successful owner edit";
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("no edito owner --repositori impl--");
             }
-
         }
+        return "the edition is not completed";
     }
 }

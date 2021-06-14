@@ -7,13 +7,13 @@ import java.util.Optional;
 
 public interface CaseRepository {
 
-    Optional<Case> save(Case aCase);
+    String save(Case aCase);
 
     Optional<Case> findById(Integer id);
 
     List<Case> findAll();
 
-    void deleteById(Integer id);
+    String deleteById(Integer id);
 
-    void editCase(Integer id, String created_at, String type, String description);
+    String editCase(Integer id, String created_at, String type, String description);
 }

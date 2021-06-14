@@ -22,16 +22,16 @@ public class CaseRepositoryImpl implements CaseRepository{
      * @return Optional of Case
      */
     @Override
-    public Optional<Case> save(Case aCase) {
+    public String save(Case aCase) {
        try {
            entityManager.getTransaction().begin();
            entityManager.persist(aCase);
            entityManager.getTransaction().commit();
-           return Optional.of(aCase);
+           return "case created successfully";
        }catch (Exception e) {
            e.printStackTrace();
        }
-        return Optional.empty();
+        return "the case could not be created";
     }
 
     /**
@@ -59,18 +59,19 @@ public class CaseRepositoryImpl implements CaseRepository{
      * @param id
      */
     @Override
-    public void deleteById(Integer id) {
+    public String deleteById(Integer id) {
         Case aCase = entityManager.find(Case.class, id);
         if(aCase != null){
             try {
                 entityManager.getTransaction().begin();
                 entityManager.remove(aCase);
                 entityManager.getTransaction().commit();
+                return "the case was successfully removed";
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
+     return "the case could not be removed";
     }
 
     /**
@@ -81,7 +82,7 @@ public class CaseRepositoryImpl implements CaseRepository{
      * @param description
      */
     @Override//Edit a case in the DataBase
-    public void editCase(Integer id, String created_at, String type, String description) {
+    public String editCase(Integer id, String created_at, String type, String description) {
         Case aCase = entityManager.find(Case.class, id);
         if(aCase != null){
             try {
@@ -90,9 +91,11 @@ public class CaseRepositoryImpl implements CaseRepository{
                 aCase.setType(type);
                 aCase.setDescription(description);
                 entityManager.getTransaction().commit();
+                return "the case has been satisfactorily modified";
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+        return "the case could not be modified";
     }
 }
