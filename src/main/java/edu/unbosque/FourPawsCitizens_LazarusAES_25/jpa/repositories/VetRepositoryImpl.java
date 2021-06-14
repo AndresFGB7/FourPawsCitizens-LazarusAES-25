@@ -25,16 +25,16 @@ public class VetRepositoryImpl implements VetRepository {
      * @return Optional of Vet
      */
     @Override
-    public Optional<Vet> save(Vet vet) {
+    public String save(Vet vet) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(vet);
             entityManager.getTransaction().commit();
-            return Optional.of(vet);
+            return "The vet was successfully created";
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return Optional.empty();
+        return "the vet could not be created";
     }
 
     /**
@@ -65,7 +65,7 @@ public class VetRepositoryImpl implements VetRepository {
      * @param username: String
      */
     @Override
-    public void deleteByUserName(String username) {
+    public String deleteByUserName(String username) {
         Vet vet = entityManager.find(Vet.class, username);
         if (vet != null) {
             try {
@@ -78,11 +78,13 @@ public class VetRepositoryImpl implements VetRepository {
 
                 entityManager.remove(vet);
                 entityManager.getTransaction().commit();
+                return "the vet was successfully removed";
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+        return "the vet could not be eliminated";
     }
 
     /**
@@ -93,7 +95,7 @@ public class VetRepositoryImpl implements VetRepository {
      * @param neighborhood: String
      */
     @Override
-    public void editVet(String username, String password, String email, String name, String address, String neighborhood) {
+    public String editVet(String username, String password, String email, String name, String address, String neighborhood) {
         Vet vet = entityManager.find(Vet.class, username);
         if (vet != null) {
             try {
@@ -104,9 +106,11 @@ public class VetRepositoryImpl implements VetRepository {
                 vet.setAddress(address);
                 vet.setNeighborhood(neighborhood);
                 entityManager.getTransaction().commit();
+                return "the vet was modified correctly";
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+        return "the vet could not be modified";
     }
 }

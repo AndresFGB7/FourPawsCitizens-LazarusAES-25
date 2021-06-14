@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class Visit {
 
     @Id
+    @GeneratedValue
     @Column(name = "visit_id")
     private Integer visit_id;
 
@@ -41,13 +42,11 @@ public class Visit {
     /**
      * Second constructor method of Visit with params
      *
-     * @param visit_id:    Integer
      * @param created_id:  String
      * @param type:        String
      * @param description: String
      */
-    public Visit(Integer visit_id, String created_id, String type, String description) {
-        this.visit_id = visit_id;
+    public Visit(String created_id, String type, String description) {
         this.created_at = created_id;
         this.type = type;
         this.description = description;
