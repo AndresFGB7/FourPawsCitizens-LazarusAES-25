@@ -95,4 +95,21 @@ public class VetsResource {
         return Response.ok().entity(visits).build();
     }
 
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response modifyVisit(@PathParam("username") String username, VisitPOJO visitPOJO) {
+        visitPOJO.setVet_id(username);
+        String reply = new VisitService().editVisit(visitPOJO.getVisit_id(),visitPOJO.getCreated_at(),visitPOJO.getType(),visitPOJO.getDescription(),visitPOJO.getVisit_id(),visitPOJO.getPet_id());
+        return Response.status(Response.Status.OK).entity(reply).build();
+    }
+
+    @DELETE
+    @Path("/visit/{visit_id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deletePet(@PathParam("visit_id") Integer visit_id) {
+        String reply = new VisitService().deleteVisit(visit_id);
+        return Response.status(Response.Status.OK).entity(reply).build();
+    }
 }
