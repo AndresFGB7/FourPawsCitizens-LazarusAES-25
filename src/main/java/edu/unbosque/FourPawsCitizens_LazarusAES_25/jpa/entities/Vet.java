@@ -1,6 +1,7 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
 /**
  *  Class for Vet Users extends UserApp
  */
-public class Vet{
+public class Vet implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL)
     @Id

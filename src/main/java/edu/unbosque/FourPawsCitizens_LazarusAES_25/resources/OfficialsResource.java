@@ -18,11 +18,18 @@ public class OfficialsResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(@PathParam("username") String username,OfficialPOJO officialPOJO) {
-        officialPOJO.setUsername(username);
-        String reply = new OfficialService().saveOfficial(officialPOJO);
+        try {
+            officialPOJO.setUsername(username);
+            String reply = new OfficialService().saveOfficial(officialPOJO);
+            return Response.
+                    status(Response.Status.CREATED)
+                    .entity(reply)
+                    .build();
+        }catch (Exception e){
+            System.out.println("este es el error" + e);
+        }
         return Response.
-                status(Response.Status.CREATED)
-                .entity(reply)
+                status(Response.Status.CONFLICT)
                 .build();
     }
 

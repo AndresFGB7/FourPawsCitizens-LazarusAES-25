@@ -1,13 +1,14 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Official")
 /**
  *  Class for Official Users extends UserApp
  */
-public class Official  {
+public class Official implements Serializable {
 
     @Id
     @OneToOne(cascade = CascadeType.ALL)

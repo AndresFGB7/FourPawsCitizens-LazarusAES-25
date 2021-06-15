@@ -21,10 +21,16 @@ public class UserAppResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(UserAppPOJO userAppPOJO) {
-        String reply = new UserAppService().saveUserApp(userAppPOJO);
-        return Response.status(Response.Status.CREATED)
-                .entity(reply)
-                .build();
+        try {
+            String reply = new UserAppService().saveUserApp(userAppPOJO);
+            return Response.status(Response.Status.CREATED)
+                    .entity(reply)
+                    .build();
+        }catch (Exception e){
+            System.out.println("aparece el error:    " + e);
+        }
+           return Response.status(Response.Status.CONFLICT)
+                   .build();
 
     }
 }

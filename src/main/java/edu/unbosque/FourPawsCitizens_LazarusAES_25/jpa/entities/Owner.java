@@ -32,8 +32,8 @@ public class Owner{
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Pet> pets = new ArrayList<>();
-    @Id
-    private Long id;
+
+
 
     /**
      * Constructor Method
