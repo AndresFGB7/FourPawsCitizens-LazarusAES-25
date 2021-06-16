@@ -51,15 +51,25 @@ public class UserAppRepositoryImpl implements UserAppRepository {
     @Override
     public void edit(UserApp usera) {
         UserApp userb = entityManager.find(UserApp.class,usera.getUsername());
+
         if(userb != null){
             try {
                 entityManager.getTransaction().begin();
+                userb.setOwner(usera.getOwner());
+
+                userb.setOfficial(usera.getOfficial());
+
                 userb.setEmail(usera.getEmail());
+
                 userb.setPassword(usera.getPassword());
+
                 userb.setRole(usera.getRole());
+
                 entityManager.getTransaction().commit();
             }catch (Exception e){
+                System.out.println("entre por aca");
                 e.printStackTrace();
+
             }
 
         }

@@ -37,9 +37,11 @@ public class OwnerService {
                 ownerPOJO.getName(),
                 ownerPOJO.getAddress(),
                 ownerPOJO.getNeighborhood());
-        user.get().addOwner(owner);
-        userAppRepository.save(user.get());
+                 user.get().addOwner(owner);
+
         String reply = ownerRepository.save(owner);
+        userAppRepository.edit(user.get());
+
         entityManager.close();
         entityManagerFactory.close();
         return reply;
