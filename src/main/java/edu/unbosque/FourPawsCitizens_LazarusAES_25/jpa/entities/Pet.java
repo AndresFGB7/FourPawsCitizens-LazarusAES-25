@@ -1,6 +1,7 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.Set;
 /**
  *  Class for Pets
  */
-public class Pet {
+public class Pet implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "pet_id", nullable = false)

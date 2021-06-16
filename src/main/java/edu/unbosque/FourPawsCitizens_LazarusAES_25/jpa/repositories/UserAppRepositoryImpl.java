@@ -1,9 +1,11 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories;
 
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Case;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.UserApp;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.UserApp;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Optional;
 
 /*
@@ -61,6 +63,11 @@ public class UserAppRepositoryImpl implements UserAppRepository {
             }
 
         }
+    }
+
+    @Override
+    public List<UserApp> findAll() {
+        return entityManager.createQuery("from UserApp ").getResultList();
     }
 
 }

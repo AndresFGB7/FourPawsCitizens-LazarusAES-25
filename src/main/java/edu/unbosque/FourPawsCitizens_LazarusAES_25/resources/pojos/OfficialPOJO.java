@@ -17,11 +17,9 @@ public class OfficialPOJO {
 
     /**
      * Second constructor method of OfficialPOJO with all params
-     * @param username: String
      * @param name: String
      */
-    public OfficialPOJO(String username, String name) {
-        this.username = username;
+    public OfficialPOJO(String name) {
         this.name = name;
     }
 

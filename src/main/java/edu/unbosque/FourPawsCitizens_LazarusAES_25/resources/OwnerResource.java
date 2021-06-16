@@ -39,7 +39,7 @@ public class OwnerResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(@PathParam("username") String username,OwnerPOJO ownerPOJO) {
         ownerPOJO.setUsername(username);
-        String reply = new OwnerService().createOwner(ownerPOJO);
+        String reply = new OwnerService().createOwner(username,ownerPOJO);
 
         return Response.
                 status(Response.Status.CREATED)

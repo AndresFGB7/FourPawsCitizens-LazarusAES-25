@@ -1,7 +1,9 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories;
 
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Case;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.UserApp;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserAppRepository {
@@ -12,4 +14,5 @@ public interface UserAppRepository {
 
     void edit(UserApp user);
 
+    public List<UserApp> findAll();
 }

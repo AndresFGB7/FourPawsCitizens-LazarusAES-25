@@ -5,13 +5,17 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "Official")
+@NamedQueries({
+        @NamedQuery(name = "Official.findAll",
+                query = "SELECT b FROM Official b")
+})
 /**
  *  Class for Official Users extends UserApp
  */
 public class Official implements Serializable {
 
     @Id
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "username")
     private UserApp userApp;
 

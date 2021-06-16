@@ -2,8 +2,10 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources;
 
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.UserApp;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.filters.Logged;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.OwnerPOJO;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.UserAppPOJO;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.UserAppPOJO;
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.services.OwnerService;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.services.UserAppService;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.services.UserAppService;
 
@@ -32,5 +34,12 @@ public class UserAppResource {
            return Response.status(Response.Status.CONFLICT)
                    .build();
 
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response totalUsers() {
+        List<UserAppPOJO> UserAppPOJO = new UserAppService().ListUsers();
+        return Response.ok().entity(UserAppPOJO).build();
     }
 }

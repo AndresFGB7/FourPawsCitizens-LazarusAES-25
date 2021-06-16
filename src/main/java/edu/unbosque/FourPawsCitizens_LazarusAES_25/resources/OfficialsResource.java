@@ -19,8 +19,10 @@ public class OfficialsResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response create(@PathParam("username") String username,OfficialPOJO officialPOJO) {
         try {
+            System.out.println("inicio metodo");
             officialPOJO.setUsername(username);
-            String reply = new OfficialService().saveOfficial(officialPOJO);
+            String reply = new OfficialService().saveOfficial(username,officialPOJO);
+            System.out.println("mitad metodo");
             return Response.
                     status(Response.Status.CREATED)
                     .entity(reply)

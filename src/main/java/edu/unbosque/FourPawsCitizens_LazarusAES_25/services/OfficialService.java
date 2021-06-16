@@ -24,19 +24,28 @@ public class OfficialService {
     OfficialRepository officialRepository;
     UserAppRepository userAppRepository;
 
-    public String saveOfficial(OfficialPOJO officialPOJO) {
+    public String saveOfficial(String username,OfficialPOJO officialPOJO) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         officialRepository = new OfficialRepositoryImpl(entityManager);
         userAppRepository = new UserAppRepositoryImpl(entityManager);
-        Optional<UserApp> user = userAppRepository.findByUsername(officialPOJO.getUsername());
+        System.out.println("entra aqui we");
+        Optional<UserApp> user = userAppRepository.findByUsername(username);
+        officialPOJO.setUsername(username);
+
         if (!user.isPresent()) return "The user does not exist";
+        System.out.println("---> user " + user.get().getUsername());
+
         Official official = new Official(officialPOJO.getName());
-        user.get().setOfficial(official);
+
+        user.get().addOfficial(official);
+
         String reply = userAppRepository.save(user.get());
+
         entityManager.close();
         entityManagerFactory.close();
+
         return reply;
     }
 }

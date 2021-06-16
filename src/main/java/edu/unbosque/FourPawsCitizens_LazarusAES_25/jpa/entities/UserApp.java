@@ -1,9 +1,14 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "UserApp")
+@NamedQueries({
+        @NamedQuery(name = "UserApp.findAll",
+                query = "SELECT b FROM UserApp b")
+})
 /**
  *  Abstract Class for Users (Owners, Vets, Officials)
  */
@@ -106,6 +111,16 @@ public class UserApp {
 
     public void setVet(Vet vet) {
         this.vet = vet;
+    }
+
+    public void addOfficial(Official official) {
+        this.official = official;
+        official.setUserApp(this);
+    }
+
+    public void addOwner(Owner owner) {
+        this.owner = owner;
+        owner.setUserApp(this);
     }
 
     @Override

@@ -1,19 +1,24 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "Owner")
+@NamedQueries({
+        @NamedQuery(name = "Owner.findAll",
+                query = "SELECT b FROM Owner b")
+})
 /**
  *  Class for Owner Users extends UserApp
  */
-public class Owner{
+public class Owner implements Serializable {
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @MapsId
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "username")
     private UserApp userApp;
 
     @Id
@@ -43,12 +48,11 @@ public class Owner{
 
     /**
      * This is the second method constructor of Case with params
-     * @param personId: Long
      * @param name: String
      * @param address: String
      * @param neighborhood: String
      */
-    public Owner(Integer personId, String name, String address, String neighborhood) {
+    public Owner(String name, String address, String neighborhood) {
         this.personId = personId;
         this.name = name;
         this.address = address;

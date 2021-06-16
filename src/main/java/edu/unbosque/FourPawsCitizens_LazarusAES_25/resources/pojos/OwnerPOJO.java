@@ -16,6 +16,26 @@ public class OwnerPOJO {
 
     public OwnerPOJO() {
     }
+    public OwnerPOJO( String name, String address, String neighborhood) {
+
+        this.name = name;
+        this.address = address;
+        this.neighborhood = neighborhood;
+    }
+    /**
+     * Second constructor method  of OwnerPOJO with params
+     * @param personId: Integer
+     * @param name: String
+     * @param address: String
+     * @param neighborhood: String
+     */
+
+    public OwnerPOJO(Integer personId, String name, String address, String neighborhood) {
+        this.personId = personId;
+        this.name = name;
+        this.address = address;
+        this.neighborhood = neighborhood;
+    }
 
     /**
      * Second constructor method  of OwnerPOJO with params

@@ -27,6 +27,7 @@ public class OfficialRepositoryImpl implements OfficialRepository{
             System.out.println("The Official was successfully saved");
             return "The Official was successfully saved";
         }catch (Exception e) {
+            System.out.println("The Official was successfully saved --> " + e);
             e.printStackTrace();
         }
         System.out.println("Unable to save the Official");
