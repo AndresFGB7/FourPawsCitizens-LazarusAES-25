@@ -34,18 +34,14 @@ public class Case {
     }
     /**
      * This is the second method constructor of Case with params
-     * @param case_id: int id of case
      * @param created_at: String created at x date
      * @param type: String Type of case
      * @param description: String
-     * @param pet_id: Pet Pet
      */
-    public Case(int case_id, String created_at, String type, String description, Pet pet_id) {
-        this.case_id = case_id;
+    public Case(String created_at, String type, String description) {
         this.created_at = created_at;
         this.type = type;
         this.description = description;
-        this.pet_id = pet_id;
     }
 
 

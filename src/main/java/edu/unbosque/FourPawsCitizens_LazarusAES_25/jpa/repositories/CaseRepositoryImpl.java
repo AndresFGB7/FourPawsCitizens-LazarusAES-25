@@ -1,15 +1,16 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories;
 
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Case;
+
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
+
 /*
     This class, save, find by id, find all, delete by id and edit an Case from the Database
  */
 public class CaseRepositoryImpl implements CaseRepository {
     private EntityManager entityManager;
-
 
     public CaseRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;

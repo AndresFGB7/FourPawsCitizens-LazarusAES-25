@@ -12,10 +12,7 @@ import javax.persistence.Persistence;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 
 public class VisitService {
     private PetRepository petRepository;
@@ -40,35 +37,51 @@ public class VisitService {
         if (!petO.isPresent()) return "No existe esa identificación de mascota";
 
         // Creating an optional vet object and find the id of the vet in the visit's pojo
-        //Optional<Vet> vetO = vetRepository.findByUserName(visitPOJO.getVet_id());
+        Optional<Vet> vetO = vetRepository.findByUserName(visitPOJO.getVet_id());
 
         //If the id doesn't exist return false
-       // if (!vetO.isPresent()) return "No existe esa veterinaria";
+        if (!vetO.isPresent()) return "No existe esa veterinaria";
 
         Pet pet = petRepository.findById(visitPOJO.getPet_id()).get();
 
-        //Vet vet = vetRepository.findById(visitPOJO.getVetUsername()).get();
+        Vet vet = vetRepository.findByUserName(visitPOJO.getVet_id()).get();
 
         //Validating the format of the date, passing date of string to date
-        DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-        Date createdAt;
-        try {
-            createdAt = format.parse(visitPOJO.getCreated_at());
-        } catch (ParseException e) {
-            return "El formato de la fecha es incorrecto!";
-        }
 
         //Creating the visit and save it in the repository
-        //Visit visit = new Visit(createdAt, visitPOJO.getType(), visitPOJO.getDescription(), vet, pet);
+        Visit visit = new Visit(visitPOJO.getCreated_at(), visitPOJO.getType(), visitPOJO.getDescription(), vet, pet);
 
-       // pet.addVisits(visit);
+        pet.addVisits(visit);
         petRepository.save(pet);
 
-        //vet.addVisit(visit);
-        //vetRepository.save(vet);
+        vet.addVisit(visit);
+        vetRepository.save(vet);
 
         entityManager.close();
         entityManagerFactory.close();
         return "Se ha creado exitosamente la visita!";
+    }
+
+    /**
+     * Get all the visits of DB
+     * @return List of Visit
+     */
+    public List<VisitPOJO> listVisit(){
+
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        visitRepository = new VisitRepositoryImpl(entityManager);
+        List<Visit> visits = visitRepository.findAll();
+
+        entityManager.close();
+        entityManagerFactory.close();
+
+        List<VisitPOJO> visitPOJOS = new ArrayList<>();
+        for (Visit visit : visits){
+
+            visitPOJOS.add(new VisitPOJO(visit.getVisit_id(),visit.getCreated_at(),visit.getType(),visit.getDescription(),visit.getVet().getVet_id(),visit.getPet().getPet_id()));
+        }
+        return visitPOJOS;
     }
 }

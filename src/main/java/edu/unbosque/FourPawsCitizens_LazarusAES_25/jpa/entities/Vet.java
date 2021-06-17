@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "Vet")
 @NamedQueries({
-        @NamedQuery(name = "Vet.findByUsername",
+        @NamedQuery(name = "Vet.findByTitle",
                 query = "SELECT b FROM Vet b WHERE b.username = :username"),
         @NamedQuery(name = "Book.findAll",
                 query = "SELECT b FROM Vet b")
@@ -18,11 +18,9 @@ import java.util.List;
  */
 public class Vet extends UserApp{
 
-
-
     @GeneratedValue
     @Column(name = "vet_id", nullable = false)
-    private Integer vet_id;
+    private String vet_id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -54,7 +52,7 @@ public class Vet extends UserApp{
      * @param address: String
      * @param neighborhood: String
      */
-    public Vet(String username, String password, String email, String role, Integer vet_id, String name, String address, String neighborhood) {
+    public Vet(String username, String password, String email, String role, String vet_id, String name, String address, String neighborhood) {
         super(username, password, email, role);
         this.vet_id = vet_id;
         this.name = name;
@@ -62,11 +60,11 @@ public class Vet extends UserApp{
         this.neighborhood = neighborhood;
     }
 
-    public Integer getVet_id() {
+    public String getVet_id() {
         return vet_id;
     }
 
-    public void setVet_id(Integer vet_id) {
+    public void setVet_id(String vet_id) {
         this.vet_id = vet_id;
     }
 

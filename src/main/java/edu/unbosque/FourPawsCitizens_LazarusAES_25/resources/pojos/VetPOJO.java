@@ -7,7 +7,7 @@ public class VetPOJO extends UserAppPOJO {
    private  String name;
    private  String address;
    private  String neighborhood;
-   private Integer vetId;
+   private String vetId;
 
     public VetPOJO(String username, String password, String email, String role) {
         super(username, password, email, role);
@@ -25,7 +25,7 @@ public class VetPOJO extends UserAppPOJO {
      * @param neighborhood: String
      */
 
-    public VetPOJO(String username, String password, String email,String role, Integer vetId, String name, String address, String neighborhood) {
+    public VetPOJO(String username, String password, String email,String role, String vetId, String name, String address, String neighborhood) {
         super(username,password,email,role);
         this.name = name;
         this.address = address;
@@ -62,11 +62,11 @@ public class VetPOJO extends UserAppPOJO {
         this.neighborhood = neighborhood;
     }
 
-    public Integer getVetId() {
+    public String getVetId() {
         return vetId;
     }
 
-    public void setVetId(Integer vetId) {
+    public void setVetId(String vetId) {
         this.vetId = vetId;
     }
 }

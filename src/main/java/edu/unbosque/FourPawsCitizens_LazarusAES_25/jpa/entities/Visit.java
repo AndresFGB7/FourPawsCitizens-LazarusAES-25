@@ -45,7 +45,7 @@ public class Visit {
      * @param vet
      * @param pet
      */
-    public Visit(Date createdAt, String type, String description, Vet vet, Pet pet) {
+    public Visit(String createdAt, String type, String description, Vet vet, Pet pet) {
 
     }
 

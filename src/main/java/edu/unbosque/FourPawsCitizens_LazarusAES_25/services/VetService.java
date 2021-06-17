@@ -3,7 +3,6 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.services;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.UserApp;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Vet;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories.UserAppRepository;
-import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories.UserAppRepositoryImpl;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories.VetRepository;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories.VetRepositoryImpl;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.VetPOJO;
@@ -98,7 +97,7 @@ public class VetService {
      * @param address:      String
      * @param neighborhood: String
      */
-    public String editVet(String username, String password, String email,String role, Integer vetId, String name, String address, String neighborhood) {
+    public String editVet(String username, String password, String email,String role, String vetId, String name, String address, String neighborhood) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
