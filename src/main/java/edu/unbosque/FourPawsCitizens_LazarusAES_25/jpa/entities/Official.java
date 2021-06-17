@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Official")
 @NamedQueries({
-        @NamedQuery(name = "Official.findByTitle",
+        @NamedQuery(name = "Official.findByUsername",
                 query = "SELECT b FROM Official b WHERE b.username = :username"),
         @NamedQuery(name = "Official.findAll",
                 query = "SELECT b FROM Official b")

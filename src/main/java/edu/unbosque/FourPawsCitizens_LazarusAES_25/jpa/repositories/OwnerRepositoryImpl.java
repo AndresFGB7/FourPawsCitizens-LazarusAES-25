@@ -19,21 +19,21 @@ public class OwnerRepositoryImpl implements OwnerRepository {
     }
 
     @Override
-    public Optional<Owner> save(Owner owner) {//Save an owner
+    public String save(Owner owner) {//Save an owner
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(owner);
             entityManager.getTransaction().commit();
-            return Optional.of(owner);
+            return "It was successfully saved by the owner";
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return Optional.empty();
+        return "The owner could not be saved";
     }
 
     @Override
-    public Optional<Owner> findById(Integer id) { //Find by id an Owner
-        Owner owner = entityManager.find(Owner.class, id);
+    public Optional<Owner> findByUsername(String Username) { //Find by id an Owner
+        Owner owner = entityManager.find(Owner.class, Username);
         return owner != null ? Optional.of(owner) : Optional.empty();
     }
 
@@ -43,7 +43,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
     }
 
     @Override
-    public void deleteById(Integer id) { //Delete by id an owner
+    public String deleteById(Integer id) { //Delete by id an owner
         Owner owner = entityManager.find(Owner.class, id);
         if (owner != null) {
             try {
@@ -56,33 +56,30 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 
                 entityManager.remove(owner);
                 entityManager.getTransaction().commit();
-
+                return "owner was successfully removed";
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+        return "the user could not be removed";
     }
 
     @Override
     //Edit an Owner of the DataBase
-    public void editOwner(Integer id, String username, String password, String email, Long personId, String name, String adress, String neighborhood) {
-        List x = new ArrayList();
-        x.add(id);
-        x.add(username);
-        Owner owner = entityManager.find(Owner.class, x);
+    public String editOwner(String username, String password, String email, Long personId, String name, String adress, String neighborhood) {
+        Owner owner = entityManager.find(Owner.class, username);
         if (owner != null) {
             try {
                 entityManager.getTransaction().begin();
-                owner.setPassword(password);
-                owner.setEmail(email);
+                owner.setName(name);
                 owner.setAddress(adress);
                 owner.setNeighborhood(neighborhood);
-                owner.setName(name);
                 entityManager.getTransaction().commit();
+                return  "successful owner edit";
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
+        return "the edition is not completed";
     }
 }
