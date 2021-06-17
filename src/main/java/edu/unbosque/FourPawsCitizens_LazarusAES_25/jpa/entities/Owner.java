@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "Owner")
 @NamedQueries({
-        @NamedQuery(name = "Owner.findByTitle",
+        @NamedQuery(name = "Owner.findByUsername",
                 query = "SELECT b FROM Owner b WHERE b.username = :username"),
         @NamedQuery(name = "Owner.findAll",
                 query = "SELECT b FROM Owner b")
