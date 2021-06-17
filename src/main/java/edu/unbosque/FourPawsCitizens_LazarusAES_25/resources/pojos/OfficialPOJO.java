@@ -3,36 +3,15 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos;
 /**
  * POJO base class, for official users
  */
-public class OfficialPOJO {
-
-    private String username;
-
+public class OfficialPOJO extends UserAppPOJO{
     private String name;
 
-    /**
-     * Constructor Method
-     */
-    public OfficialPOJO() {
 
-    }
-
-    /**
-     * Second constructor method  of OfficialPOJO with params
-     * @param username: String
-     * @param name: String
-     */
-    public OfficialPOJO(String username, String name) {
-        this.username = username;
+    public OfficialPOJO(String username, String password, String email, String role, String name) {
+        super(username, password, email, role);
         this.name = name;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getName() {
         return name;

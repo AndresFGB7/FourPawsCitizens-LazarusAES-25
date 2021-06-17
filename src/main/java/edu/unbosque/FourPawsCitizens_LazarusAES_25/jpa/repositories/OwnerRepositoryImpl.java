@@ -43,8 +43,8 @@ public class OwnerRepositoryImpl implements OwnerRepository {
     }
 
     @Override
-    public String deleteById(Integer id) { //Delete by id an owner
-        Owner owner = entityManager.find(Owner.class, id);
+    public String deleteByUsername(String  Username) { //Delete by id an owner
+        Owner owner = entityManager.find(Owner.class, Username);
         if (owner != null) {
             try {
 

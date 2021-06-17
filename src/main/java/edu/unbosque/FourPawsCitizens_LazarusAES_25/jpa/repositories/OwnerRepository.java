@@ -14,7 +14,7 @@ public interface OwnerRepository {
 
     List<Owner> findAll();
 
-    String deleteById(Integer id);
+    String deleteByUsername(String username);
 
     String editOwner (String username, String password, String email, Long personId, String name, String adress,String neighborhood);
 }

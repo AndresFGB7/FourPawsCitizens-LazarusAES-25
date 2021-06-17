@@ -33,10 +33,10 @@ public class PetService<fin> {
         petRepository = new PetRepositoryImpl(entityManager);
         ownerRepository = new OwnerRepositoryImpl(entityManager);
         //Create an owner optional object an save the id that entry
-        Optional<Owner> owner = ownerRepository.findById(petPOJO.getOwner_id());
+      //  Optional<Owner> owner = ownerRepository.findByUsername(petPOJO.get);
 
         //If the owner with the id doesn't exists return a message
-        if (!owner.isPresent()) return "The username of the owner entered does not exist!";
+      //  if (!owner.isPresent()) return "The username of the owner entered does not exist!";
 
         List<Pet> petList = petRepository.findAll();
         //If the owner with the id exist, scroll through the pet list to verify that the microchip does not exist
@@ -56,7 +56,7 @@ public class PetService<fin> {
                 petPOJO.getPicture());
                //owner.get().addPet(pet);
 
-        ownerRepository.save(owner.get());
+     //   ownerRepository.save(owner.get());
 
         entityManager.close();
         entityManagerFactory.close();
