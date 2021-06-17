@@ -18,6 +18,8 @@ import java.util.List;
  */
 public class Vet extends UserApp{
 
+
+
     @GeneratedValue
     @Column(name = "vet_id", nullable = false)
     private Integer vet_id;

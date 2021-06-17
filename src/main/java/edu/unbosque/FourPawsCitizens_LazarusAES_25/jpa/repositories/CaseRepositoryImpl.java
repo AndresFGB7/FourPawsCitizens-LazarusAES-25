@@ -10,6 +10,7 @@ import java.util.Optional;
 public class CaseRepositoryImpl implements CaseRepository {
     private EntityManager entityManager;
 
+
     public CaseRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }

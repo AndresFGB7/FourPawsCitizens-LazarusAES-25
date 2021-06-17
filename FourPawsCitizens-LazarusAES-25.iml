@@ -19,7 +19,10 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
+<<<<<<< HEAD
+=======
           <factory-entry name="LazarusAES-256" />
+>>>>>>> c322ac12421882476cea28462410dc0e90869666
           <factory-entry name="LazarusAES_256" />
           <factory-entry name="tutorial" />
         </datasource-mapping>

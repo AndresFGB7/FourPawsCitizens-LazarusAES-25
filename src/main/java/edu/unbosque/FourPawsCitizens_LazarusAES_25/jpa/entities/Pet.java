@@ -2,7 +2,9 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 
@@ -17,6 +19,7 @@ import java.util.List;
  */
 public class Pet {
     @Id
+    @GeneratedValue
     @Column(name = "pet_id", nullable = false)
     private Integer pet_id;
 
@@ -46,15 +49,23 @@ public class Pet {
     private Owner owner_id;
 
     @OneToMany(mappedBy = "pet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Case> cases = new ArrayList<>();
+    private Set<Case> cases = new HashSet<>();
 
     @OneToMany(mappedBy = "pet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Visit> visits = new ArrayList<>();
+    private Set<Visit> visits = new HashSet<>();
 
     /**
      * Constructor Method
+     * @param pet_id
+     * @param microchip
+     * @param name
+     * @param species
+     * @param race
+     * @param size
+     * @param sex
+     * @param picture
      */
-    public Pet(){
+    public Pet(Integer pet_id, String microchip, String name, String species, String race, String size, String sex, String picture){
 
     }
 
@@ -72,7 +83,7 @@ public class Pet {
      * @param cases: List
      * @param visits: List
      */
-    public Pet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture, Owner owner_id, List<Case> cases, List<Visit> visits) {
+    public Pet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture, Owner owner_id, Set<Case> cases, Set<Visit> visits) {
         this.pet_id = pet_id;
         this.microship = microship;
         this.name = name;
@@ -158,7 +169,7 @@ public class Pet {
         this.owner_id = owner_id;
     }
 
-    public List<Case> getCases() {
+    public Set<Case> getCases() {
         return cases;
     }
 
@@ -168,16 +179,19 @@ public class Pet {
 
     }
 
-    public void setCases(List<Case> cases) {
+    public void setCases(Set<Case> cases) {
         this.cases = cases;
     }
 
-    public List<Visit> getVisits() {
+    public void setVisits(Set<Visit> visits) {
+        this.visits = visits;
+    }
+
+    public Set<Visit> getVisits() {
         return visits;
     }
 
     public void addVisits(Visit visit) {
-        visits.add(visit);
-        visit.setPet(this);
+       this.visits.add(visit);
     }
 }

@@ -3,13 +3,18 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "VisitPOJO")
+@Table(name = "Visit")
+@NamedQueries({
+        @NamedQuery(name = "Visit.remove",
+                query = "DELETE FROM Visit e WHERE e.id = :id")
+})
 /**
  *  Class for visits to a vet
  */
 public class Visit {
 
     @Id
+    @GeneratedValue
     @Column(name = "visit_id")
     private Integer visit_id;
 
