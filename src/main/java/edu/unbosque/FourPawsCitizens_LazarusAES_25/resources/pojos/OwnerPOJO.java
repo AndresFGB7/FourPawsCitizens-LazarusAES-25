@@ -2,7 +2,15 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos;
 /**
  * POJO base class, for Owners Users
  */
-public class OwnerPOJO extends UserAppPOJO {
+public class OwnerPOJO {
+
+    private String username;
+
+    private String password;
+
+    private String email;
+
+    private String role;
 
     private Long personId;
 
@@ -10,17 +18,54 @@ public class OwnerPOJO extends UserAppPOJO {
 
     private String address;
 
-    private String role;
-
     private String neighborhood;
 
 
+    public OwnerPOJO() {
+
+    }
+
     public OwnerPOJO(String username, String password, String email, String role, Long personId, String name, String address, String neighborhood) {
-        super(username, password, email, role);
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = role;
         this.personId = personId;
         this.name = name;
         this.address = address;
         this.neighborhood = neighborhood;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Long getPersonId() {
@@ -47,16 +92,6 @@ public class OwnerPOJO extends UserAppPOJO {
         this.address = address;
     }
 
-    @Override
-    public String getRole() {
-        return role;
-    }
-
-    @Override
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public String getNeighborhood() {
         return neighborhood;
     }
@@ -65,3 +100,5 @@ public class OwnerPOJO extends UserAppPOJO {
         this.neighborhood = neighborhood;
     }
 }
+
+

@@ -4,6 +4,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Case")
+@NamedQueries({
+        @NamedQuery(name = "Case.findById",
+                query = "SELECT b FROM Case b WHERE b.case_id = :case_id"),
+        @NamedQuery(name = "Case.findAll",
+                query = "SELECT b FROM Case b")
+})
+
 /**
  * Class for pet cases
  */
@@ -24,7 +31,7 @@ public class Case {
 
     @ManyToOne
     @JoinColumn(name = "pet_id")
-    private Pet pet_id;
+    private Pet pet;
 
     /**
      * Constructor without params
@@ -78,10 +85,10 @@ public class Case {
     }
 
     public Pet getPet_id() {
-        return pet_id;
+        return pet;
     }
 
     public void setPet_id(Pet pet_id) {
-        this.pet_id = pet_id;
+        this.pet = pet;
     }
 }

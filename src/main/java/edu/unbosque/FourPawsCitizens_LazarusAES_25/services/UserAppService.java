@@ -17,7 +17,7 @@ public class UserAppService {
 
     public Optional<String> validateUser( String username, String password ) {
 
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         // Getting credentials from the database

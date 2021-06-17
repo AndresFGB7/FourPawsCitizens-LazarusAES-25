@@ -96,6 +96,6 @@ public class Owner extends UserApp {
 
     public void addPets(Pet pet) {
         pets.add(pet);
-        pet.setOwner_id(this);
+        pet.setOwner(this);
     }
 }

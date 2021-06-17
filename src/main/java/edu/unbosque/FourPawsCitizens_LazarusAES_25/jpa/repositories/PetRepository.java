@@ -11,7 +11,7 @@ public interface PetRepository {
 
     Optional<Pet> findById(Integer id);
 
-    Optional<Pet> findAll(Integer petId);
+    List findAll(Integer petId);
 
     List<Pet> findAll();
 

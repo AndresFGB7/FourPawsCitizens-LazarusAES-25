@@ -58,8 +58,8 @@ public class VetService {
 
         vetRepository = new VetRepositoryImpl(entityManager);
 
-        Optional<UserApp> user = userAppRepository.findByUsername(vetPOJO.getUsername());
-        if (!user.isPresent()) return "The user does not exist";
+        //Optional<UserApp> user = userAppRepository.findByUsername(vetPOJO.getUsername());
+        //if (!user.isPresent()) return "The user does not exist";
 
         Vet vet = new Vet(vetPOJO.getUsername(), vetPOJO.getPassword(), vetPOJO.getRole(),
                 vetPOJO.getEmail(), vetPOJO.getVetId(), vetPOJO.getName(),

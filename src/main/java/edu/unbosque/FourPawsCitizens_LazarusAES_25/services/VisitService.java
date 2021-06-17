@@ -24,17 +24,17 @@ public class VisitService {
      * @return a string message
      */
     public String saveVisit(VisitPOJO visitPOJO) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("FootprintsSystemDS");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         petRepository = new PetRepositoryImpl(entityManager);
         vetRepository = new VetRepositoryImpl(entityManager);
 
         // Creating an optional pet object and find the id of the pet in the visit's pojo
-        Optional<Pet> petO = petRepository.findAll(visitPOJO.getPet_id());
+        List petO = petRepository.findAll(visitPOJO.getPet_id());
 
         //If the id doesn't exist return false
 
-        if (!petO.isPresent()) return "No existe esa identificación de mascota";
+        if (petO.isEmpty()) return "No existe esa identificación de mascota";
 
         // Creating an optional vet object and find the id of the vet in the visit's pojo
         Optional<Vet> vetO = vetRepository.findByUserName(visitPOJO.getVet_id());

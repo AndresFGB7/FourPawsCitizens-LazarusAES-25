@@ -1,9 +1,7 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -46,7 +44,7 @@ public class Pet {
 
     @ManyToOne
     @JoinColumn(name = "person_id")
-    private Owner owner_id;
+    private Owner owner;
 
     @OneToMany(mappedBy = "pet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Case> cases = new HashSet<>();
@@ -79,11 +77,11 @@ public class Pet {
      * @param size: String
      * @param sex: String
      * @param picture: String
-     * @param owner_id: Owner
+     * @param owner: Owner
      * @param cases: List
      * @param visits: List
      */
-    public Pet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture, Owner owner_id, Set<Case> cases, Set<Visit> visits) {
+    public Pet(Integer pet_id, String microship, String name, String species, String race, String size, String sex, String picture, Owner owner, Set<Case> cases, Set<Visit> visits) {
         this.pet_id = pet_id;
         this.microship = microship;
         this.name = name;
@@ -92,9 +90,13 @@ public class Pet {
         this.size = size;
         this.sex = sex;
         this.picture = picture;
-        this.owner_id = owner_id;
+        this.owner = owner;
         this.cases = cases;
         this.visits = visits;
+    }
+
+    public Pet() {
+
     }
 
     public Integer getPet_id() {
@@ -161,12 +163,12 @@ public class Pet {
         this.picture = picture;
     }
 
-    public Owner getOwner_id() {
-        return owner_id;
+    public Owner getOwner() {
+        return owner;
     }
 
-    public void setOwner_id(Owner owner_id) {
-        this.owner_id = owner_id;
+    public void setOwner(Owner owner_id) {
+        this.owner = owner_id;
     }
 
     public Set<Case> getCases() {
