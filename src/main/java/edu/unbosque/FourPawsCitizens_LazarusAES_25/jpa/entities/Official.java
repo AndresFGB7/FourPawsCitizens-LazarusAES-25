@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Table(name = "Official")
 @PrimaryKeyJoinColumn
 /**
- *  Class for Official Users extends UserApp
+ *  Class for Official Users extends UserAppPOJO
  */
 public class Official extends UserApp {
 

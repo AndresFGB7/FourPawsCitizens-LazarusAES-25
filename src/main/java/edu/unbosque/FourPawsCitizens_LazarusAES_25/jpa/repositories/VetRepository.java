@@ -8,13 +8,14 @@ import java.util.Optional;
 
 public interface VetRepository {
 
-    Optional<Vet> save(Vet vet);
+    String save(Vet vet);
 
     Optional<Vet> findByUserName(String username);
 
     List<Vet> findAll();
 
-    void deleteByUserName(String username);
+    String deleteByUserName(String username);
 
-    void editVet (String username, String name, String adress, String neighborhood);
+    String editVet (String username, String password, String email,String role,Integer vetId, String name, String address, String neighborhood);
+
 }

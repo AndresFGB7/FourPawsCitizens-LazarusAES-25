@@ -8,7 +8,7 @@ import java.util.List;
 @Table(name = "VetPOJO")
 @PrimaryKeyJoinColumn
 /**
- *  Class for Vet Users extends UserApp
+ *  Class for Vet Users extends UserAppPOJO
  */
 public class Vet extends UserApp{
 
