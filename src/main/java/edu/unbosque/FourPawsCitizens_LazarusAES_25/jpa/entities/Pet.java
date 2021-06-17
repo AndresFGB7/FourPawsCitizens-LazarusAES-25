@@ -78,6 +78,17 @@ public class Pet implements Serializable {
         this.sex = sex;
         this.picture = picture;
     }
+
+    public Pet(String microchip, String name, String species, String race, String size, String sex, String picture) {
+        this.microchip = microchip;
+        this.name = name;
+        this.species = species;
+        this.race = race;
+        this.size = size;
+        this.sex = sex;
+        this.picture = picture;
+    }
+
     public Integer getPet_id() {
         return pet_id;
     }

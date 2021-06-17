@@ -23,7 +23,7 @@ public class Owner implements Serializable {
 
     @Id
     @GeneratedValue
-    @Column(name = "person_Id", nullable = false, unique = true)
+    @Column(name = "person_Id", unique = true)
     private Integer personId;
 
     @Column(name = "name", nullable = false)

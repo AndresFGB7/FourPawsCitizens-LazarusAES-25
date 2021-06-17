@@ -46,7 +46,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
      * @return Optional of Owner
      */
     @Override
-    public Optional<Owner> findById(String id) {
+    public Optional<Owner> findById(String id){
         Owner owner = entityManager.find(Owner.class, id);
         return owner != null ? Optional.of(owner) : Optional.empty();
     }

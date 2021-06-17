@@ -27,12 +27,22 @@ public class PetPOJO {
 
     private String picture;
 
-    private String owner_id;
+    private Integer owner_id;
     /**
      * Constructor Method
      */
     public PetPOJO(){
 
+    }
+
+    public PetPOJO(String microchip, String name, String species, String race, String size, String sex, String picture) {
+        this.microchip = microchip;
+        this.name = name;
+        this.species = species;
+        this.race = race;
+        this.size = size;
+        this.sex = sex;
+        this.picture = picture;
     }
 
     /**
@@ -47,7 +57,7 @@ public class PetPOJO {
      * @param picture: String
      * @param owner_id: String
      */
-    public PetPOJO(Integer pet_id, String microchip, String name, String species, String race, String size, String sex, String picture, String owner_id) {
+    public PetPOJO(Integer pet_id, String microchip, String name, String species, String race, String size, String sex, String picture, Integer owner_id) {
         this.pet_id = pet_id;
         this.microchip = microchip;
         this.name = name;
@@ -123,11 +133,11 @@ public class PetPOJO {
         this.picture = picture;
     }
 
-    public String getOwner_id() {
+    public Integer getOwner_id() {
         return owner_id;
     }
 
-    public void setOwner_id(String owner_id) {
+    public void setOwner_id(Integer owner_id) {
         this.owner_id = owner_id;
     }
 }

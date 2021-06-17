@@ -69,8 +69,8 @@ public class OwnerResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createPet(@PathParam("username") String username, PetPOJO petPOJO) {
-        petPOJO.setOwner_id(username);
-        String reply = new PetService().createPet(petPOJO);
+
+        String reply = new PetService().createPet(username,petPOJO);
         return Response.
                 status(Response.Status.CREATED)
                 .entity(reply)

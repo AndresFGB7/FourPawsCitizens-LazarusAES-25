@@ -28,12 +28,10 @@ public class PetRepositoryImpl implements PetRepository{
             entityManager.getTransaction().begin();
             entityManager.persist(pet);
             entityManager.getTransaction().commit();
-            System.out.println("The pet was successfully created");
             return "The pet was successfully created";
         }catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("The pet could not be created");
         return "The pet could not be created";
     }
 
