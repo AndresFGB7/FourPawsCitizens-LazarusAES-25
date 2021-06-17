@@ -1,6 +1,7 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "Visit")
@@ -38,8 +39,13 @@ public class Visit {
 
     /**
      * Constructor Method
+     * @param createdAt
+     * @param type
+     * @param description
+     * @param vet
+     * @param pet
      */
-    public Visit() {
+    public Visit(Date createdAt, String type, String description, Vet vet, Pet pet) {
 
     }
 

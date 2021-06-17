@@ -34,6 +34,11 @@ public class PetRepositoryImpl implements PetRepository{
     }
 
     @Override
+    public Optional<Pet> findAll(Integer petId) {
+        return entityManager.createQuery("from Pet").getResultList();
+    }
+
+    @Override
     public List<Pet> findAll() {
         return entityManager.createQuery("from Pet").getResultList();
     }

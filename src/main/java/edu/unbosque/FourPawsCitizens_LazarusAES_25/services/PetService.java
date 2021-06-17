@@ -54,7 +54,7 @@ public class PetService<fin> {
                 petPOJO.getSize(),
                 petPOJO.getSex(),
                 petPOJO.getPicture());
-               owner.get().addPet(pet);
+               //owner.get().addPet(pet);
 
         ownerRepository.save(owner.get());
 

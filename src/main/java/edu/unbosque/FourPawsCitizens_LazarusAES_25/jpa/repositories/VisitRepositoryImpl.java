@@ -17,22 +17,15 @@ public class VisitRepositoryImpl implements VisitRepository {
   }
 
   @Override
-  public Optional<Visit> save(Visit visit) {
+  public String save(Visit visit) {
     try {
       entityManager.getTransaction().begin();
       entityManager.persist(visit);
       entityManager.getTransaction().commit();
-    }catch (Exception e) {
-      e.printStackTrace();
+      return "has been successfully registered";
+    } catch (Exception e) {
+      return "An error occurred while registering the visit!";
     }
-    return Optional.empty();
-  }
-
-  @Override
-  public Optional<Visit> findById(Integer id) {
-    Visit visit = entityManager.find(Visit.class, id);
-    return visit != null ? Optional.of(visit) : Optional.empty();
-
   }
 
   @Override
@@ -40,34 +33,5 @@ public class VisitRepositoryImpl implements VisitRepository {
     return entityManager.createQuery("from Visit ").getResultList();
   }
 
-  @Override
-  public void deleteById(Integer id) {
-    Visit visit = entityManager.find(Visit.class, id);
-    if (visit != null) {
-      try {
-        entityManager.getTransaction().begin();
-        entityManager.remove(visit);
-        entityManager.getTransaction().commit();
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-    }
-  }
 
-  @Override
-  public void editVisit(Integer id, String created_at, String type, String description, Integer vet_id, Integer pet_id) {
-    Visit visit = entityManager.find(Visit.class,pet_id);
-    if(visit != null){
-      try {
-        entityManager.getTransaction().begin();
-        visit.setCreated_at(created_at);
-        visit.setType(type);
-        visit.setDescription(description);
-        entityManager.getTransaction().commit();
-      }catch (Exception e){
-        e.printStackTrace();
-      }
-
-    }
-  }
 }

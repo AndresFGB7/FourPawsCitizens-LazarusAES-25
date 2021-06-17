@@ -8,13 +8,10 @@ import java.util.Optional;
 
 public interface VisitRepository {
 
-    Optional<Visit> save(Visit visit);
+    String save(Visit visit);
 
-    Optional<Visit> findById(Integer id);
 
     List<Visit> findAll();
 
-    void deleteById(Integer id);
 
-    void editVisit (Integer id,String created_at, String type, String description, Integer vet_id, Integer pet_id);
 }

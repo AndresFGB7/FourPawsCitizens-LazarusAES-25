@@ -11,6 +11,8 @@ public interface PetRepository {
 
     Optional<Pet> findById(Integer id);
 
+    Optional<Pet> findAll(Integer petId);
+
     List<Pet> findAll();
 
     String editPet(PetPOJO petPOJO);
