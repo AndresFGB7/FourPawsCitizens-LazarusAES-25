@@ -34,6 +34,12 @@ public class OfficialsResource {
                 status(Response.Status.CONFLICT)
                 .build();
     }
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response totalOfficials() {
+        List<OfficialPOJO>  officialPOJOS = new OfficialService().listOfficial();
+        return Response.ok().entity(officialPOJOS).build();
+    }
 
     @Logged
     @GET

@@ -22,17 +22,17 @@ public class OwnerService {
     OwnerRepository ownerRepository;
     UserAppRepository userAppRepository;
 
-    public String  createOwner(String username,OwnerPOJO ownerPOJO) {
+    public String createOwner(String username,OwnerPOJO ownerPOJO) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         ownerRepository = new OwnerRepositoryImpl(entityManager);
         userAppRepository = new UserAppRepositoryImpl(entityManager);
-
+        System.out.println("entra crear owner 1");
         Optional<UserApp> user = userAppRepository.findByUsername(username);
         if (!user.isPresent()) return "The user does not exist";
-
+        System.out.println("entra crear owner 2");
         Owner owner = new Owner(
                 ownerPOJO.getName(),
                 ownerPOJO.getAddress(),

@@ -3,6 +3,7 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.repositories;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities.Official;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Optional;
 /*
     This class saves an Officer in the DataBase
@@ -32,5 +33,10 @@ public class OfficialRepositoryImpl implements OfficialRepository{
         }
         System.out.println("Unable to save the Official");
         return "Unable to save the Official";
+    }
+
+    @Override
+    public List<Official> findAll() {
+        return entityManager.createQuery("from Official").getResultList();
     }
 }

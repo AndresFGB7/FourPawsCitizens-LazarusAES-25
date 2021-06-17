@@ -15,6 +15,11 @@ public class OfficialPOJO {
 
     }
 
+    public OfficialPOJO(String username, String name) {
+        this.username = username;
+        this.name = name;
+    }
+
     /**
      * Second constructor method of OfficialPOJO with all params
      * @param name: String
