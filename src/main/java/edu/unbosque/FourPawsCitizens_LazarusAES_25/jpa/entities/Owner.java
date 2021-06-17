@@ -6,12 +6,19 @@ import java.util.List;
 
 @Entity
 @Table(name = "Owner")
+@NamedQueries({
+        @NamedQuery(name = "Owner.findByTitle",
+                query = "SELECT b FROM Owner b WHERE b.username = :username"),
+        @NamedQuery(name = "Owner.findAll",
+                query = "SELECT b FROM Owner b")
+})
 @PrimaryKeyJoinColumn
 /**
  *  Class for Owner Users extends UserAppPOJO
  */
 public class Owner extends UserApp {
 
+    @GeneratedValue
     @Column(name = "person_id", nullable = false, unique = true)
     private Long personId;
 
@@ -43,8 +50,8 @@ public class Owner extends UserApp {
      * @param address: String
      * @param neighborhood: String
      */
-    public Owner(String username, String password, String email, Long personId, String name, String address, String neighborhood) {
-        super(username, password, email, "Owner");
+    public Owner(String username, String password, String email, String role,  Long personId, String name, String address, String neighborhood) {
+        super(username, password, email, role);
         this.personId = personId;
         this.name = name;
         this.address = address;

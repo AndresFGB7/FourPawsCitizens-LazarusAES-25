@@ -23,7 +23,7 @@ public class OwnerService {
 
         ownerRepository = new OwnerRepositoryImpl(entityManager);
 
-        Owner owner = new Owner(ownerPOJO.getUsername(), ownerPOJO.getPassword(), ownerPOJO.getEmail(),
+        Owner owner = new Owner(ownerPOJO.getUsername(), ownerPOJO.getPassword(), ownerPOJO.getEmail(),ownerPOJO.getRole(),
                 ownerPOJO.getPersonId(), ownerPOJO.getName(), ownerPOJO.getAddress(), ownerPOJO.getNeighborhood());
         Optional<Owner> persistedOwner = ownerRepository.save(owner);
 
@@ -34,6 +34,7 @@ public class OwnerService {
             return Optional.of(new OwnerPOJO(persistedOwner.get().getUsername(),
                     persistedOwner.get().getPassword(),
                     persistedOwner.get().getEmail(),
+                    persistedOwner.get().getRole(),
                     persistedOwner.get().getPersonId(),
                     persistedOwner.get().getName(),
                     persistedOwner.get().getAddress(),

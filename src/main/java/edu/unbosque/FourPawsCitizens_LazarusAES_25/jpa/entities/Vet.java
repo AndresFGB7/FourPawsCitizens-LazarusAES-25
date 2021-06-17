@@ -5,7 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "VetPOJO")
+@Table(name = "Vet")
+@NamedQueries({
+        @NamedQuery(name = "Vet.findByTitle",
+                query = "SELECT b FROM Vet b WHERE b.username = :username"),
+        @NamedQuery(name = "Book.findAll",
+                query = "SELECT b FROM Vet b")
+})
 @PrimaryKeyJoinColumn
 /**
  *  Class for Vet Users extends UserAppPOJO
