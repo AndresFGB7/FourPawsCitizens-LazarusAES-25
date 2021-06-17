@@ -45,12 +45,11 @@ public class Owner extends UserApp {
      * @param username: String
      * @param password: String
      * @param email: String
-     * @param personId: Long
      * @param name: String
      * @param address: String
      * @param neighborhood: String
      */
-    public Owner(String username, String password, String email, String role,  Long personId, String name, String address, String neighborhood) {
+    public Owner(String username, String password, String email, String role, String name, String address, String neighborhood) {
         super(username, password, email, role);
         this.personId = personId;
         this.name = name;

@@ -12,6 +12,7 @@ public abstract class UserAppPOJO {
 
     private String role;
 
+
     public UserAppPOJO(String username, String password, String email, String role) {
         this.username = username;
         this.password = password;

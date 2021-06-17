@@ -16,14 +16,13 @@ public class UserAppService {
     UserAppRepository userAppRepository;
 
     public Optional<String> validateUser( String username, String password ) {
-
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-
         // Getting credentials from the database
         userAppRepository = new UserAppRepositoryImpl(entityManager);
+        System.out.println("Bien entity ");
         Optional<UserApp> user = userAppRepository.findByUsername(username);
-
+        System.out.println("Bien userx  ");
         entityManager.close();
         entityManagerFactory.close();
 

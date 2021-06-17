@@ -62,7 +62,7 @@ public class VetService {
         //if (!user.isPresent()) return "The user does not exist";
 
         Vet vet = new Vet(vetPOJO.getUsername(), vetPOJO.getPassword(), vetPOJO.getRole(),
-                vetPOJO.getEmail(), vetPOJO.getVetId(), vetPOJO.getName(),
+                vetPOJO.getEmail(), vetPOJO.getName(),
                 vetPOJO.getAddress(),
                 vetPOJO.getNeighborhood());
         String reply = vetRepository.save(vet);

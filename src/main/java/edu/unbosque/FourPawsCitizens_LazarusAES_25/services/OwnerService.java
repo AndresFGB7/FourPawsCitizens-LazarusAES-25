@@ -30,7 +30,6 @@ public class OwnerService {
                 ownerPOJO.getPassword(),
                 ownerPOJO.getEmail(),
                 ownerPOJO.getRole(),
-                ownerPOJO.getPersonId(),
                 ownerPOJO.getName(),
                 ownerPOJO.getAddress(),
                 ownerPOJO.getNeighborhood());
