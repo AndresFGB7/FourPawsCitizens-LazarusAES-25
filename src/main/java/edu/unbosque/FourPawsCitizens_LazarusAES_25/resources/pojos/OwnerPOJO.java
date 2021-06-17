@@ -10,6 +10,8 @@ public class OwnerPOJO {
 
     private String address;
 
+    private String role;
+
     private String neighborhood;
 
     private String username;
@@ -39,10 +41,11 @@ public class OwnerPOJO {
      * @param address: String
      * @param neighborhood: String
      */
-    public OwnerPOJO(String username, String password, String email, Long personId, String name, String address, String neighborhood) {
+    public OwnerPOJO(String username, String password, String email,String role, Long personId, String name, String address, String neighborhood) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.role = role;
         this.personId = personId;
         this.name = name;
         this.address = address;
@@ -105,4 +108,11 @@ public class OwnerPOJO {
         this.neighborhood = neighborhood;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

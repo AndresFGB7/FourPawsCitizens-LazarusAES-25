@@ -1,15 +1,18 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Official")
+@NamedQueries({
+        @NamedQuery(name = "Official.findByTitle",
+                query = "SELECT b FROM Official b WHERE b.username = :username"),
+        @NamedQuery(name = "Official.findAll",
+                query = "SELECT b FROM Official b")
+})
 @PrimaryKeyJoinColumn
 /**
- *  Class for Official Users extends UserApp
+ *  Class for Official Users extends UserAppPOJO
  */
 public class Official extends UserApp {
 
@@ -31,7 +34,7 @@ public class Official extends UserApp {
      * @param name: String name
      */
     public Official(String username, String password, String email, String role, String name) {
-        super(username, password, email, "official");
+        super(username, password, email, role);
         this.name = name;
     }
 

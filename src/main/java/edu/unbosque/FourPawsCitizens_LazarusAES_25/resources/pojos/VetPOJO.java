@@ -2,41 +2,41 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos;
 /**
  * POJO base class, for Vet Users
  */
-public class VetPOJO {
-   private  String username;
+public class VetPOJO extends UserAppPOJO {
+
    private  String name;
    private  String address;
    private  String neighborhood;
+   private Integer vetId;
+
+    public VetPOJO(String username, String password, String email, String role) {
+        super(username, password, email, role);
+    }
+
 
     /**
      * Second constructor method  of VetPOJO with params
      * @param username: String
+     * @param password: String
+     * @param email: String
      * @param name: String
+     * @param role: String
      * @param address: String
      * @param neighborhood: String
      */
-    public VetPOJO(String username, String name, String address, String neighborhood) {
-        this.username = username;
+
+    public VetPOJO(String username, String password, String email,String role, Integer vetId, String name, String address, String neighborhood) {
+        super(username,password,email,role);
         this.name = name;
         this.address = address;
         this.neighborhood = neighborhood;
+        this.vetId = vetId;
     }
+
     /**
      * Constructor Method
      */
-    public VetPOJO(){
 
-    }
-
-
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getName() {
         return name;
@@ -62,5 +62,11 @@ public class VetPOJO {
         this.neighborhood = neighborhood;
     }
 
+    public Integer getVetId() {
+        return vetId;
+    }
 
+    public void setVetId(Integer vetId) {
+        this.vetId = vetId;
+    }
 }

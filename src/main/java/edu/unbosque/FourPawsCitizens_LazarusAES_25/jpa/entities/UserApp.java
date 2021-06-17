@@ -3,7 +3,7 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "UserApp")
+@Table(name = "UserAppPOJO")
 @Inheritance(strategy = InheritanceType.JOINED)
 /**
  *  Abstract Class for Users (Owners, Vets, Officials)
@@ -78,7 +78,7 @@ public abstract class UserApp {
 
     @Override
     public String toString() {
-        return "UserApp{" +
+        return "UserAppPOJO{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +

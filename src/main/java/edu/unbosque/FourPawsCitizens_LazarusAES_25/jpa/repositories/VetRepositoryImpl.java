@@ -15,32 +15,54 @@ public class VetRepositoryImpl implements VetRepository {
         this.entityManager = entityManager;
     }
 
+    /**
+     * Save a Vet
+     *
+     * @param vet: Vet
+     * @return Optional of Vet
+     */
     @Override
-    public Optional<Vet> save(Vet vet) {
+    public String save(Vet vet) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(vet);
             entityManager.getTransaction().commit();
-            return Optional.of(vet);
+            return "The vet was successfully created";
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return Optional.empty();
+        return "the vet could not be created";
     }
 
+    /**
+     * Find by username a Vet
+     *
+     * @param username: String
+     * @return Optional of Vet
+     */
     @Override
     public Optional<Vet> findByUserName(String username) {
         Vet vet = entityManager.find(Vet.class, username);
         return vet != null ? Optional.of(vet) : Optional.empty();
     }
 
+    /**
+     * Find all the Vets
+     *
+     * @return List of all Vets
+     */
     @Override
     public List<Vet> findAll() {
         return entityManager.createQuery("from Vet").getResultList();
     }
 
+    /**
+     * Delete by username a Vet
+     *
+     * @param username: String
+     */
     @Override
-    public void deleteByUserName(String username) {
+    public String deleteByUserName(String username) {
         Vet vet = entityManager.find(Vet.class, username);
         if (vet != null) {
             try {
@@ -53,26 +75,34 @@ public class VetRepositoryImpl implements VetRepository {
 
                 entityManager.remove(vet);
                 entityManager.getTransaction().commit();
+                return "the vet was successfully removed";
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+        return "the vet could not be eliminated";
     }
 
     @Override
-    public void editVet(String username, String name, String adress, String neighborhood) {
+    public String editVet(String username, String password, String email, String role, Integer vetId, String name, String address, String neighborhood) {
         Vet vet = entityManager.find(Vet.class, username);
         if (vet != null) {
             try {
                 entityManager.getTransaction().begin();
+                vet.setPassword(password);
+                vet.setEmail(email);
+                vet.setRole(role);
                 vet.setName(name);
-                vet.setAddress(adress);
+                vet.setAddress(address);
                 vet.setNeighborhood(neighborhood);
                 entityManager.getTransaction().commit();
+                return "the vet was modified correctly";
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+        return "the vet could not be modified";
     }
+
 }
