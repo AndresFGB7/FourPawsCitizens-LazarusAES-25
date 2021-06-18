@@ -24,13 +24,11 @@ public class CasePOJO {
 
     /**
      * Second constructor method  of CasePOJO with params
-     * @param case_id: int
      * @param created_at: String
      * @param type: String
      * @param description: String
-     * @param pet_id: int
      */
-    public CasePOJO(int case_id, String created_at, String type, String description, int pet_id) {
+    public CasePOJO(String created_at, String type, String description) {
         this.case_id = case_id;
         this.created_at = created_at;
         this.type = type;
@@ -38,6 +36,14 @@ public class CasePOJO {
         this.pet_id = pet_id;
     }
 
+
+    public CasePOJO(Integer case_id, String created_at, String type, String description, Integer pet_id) {
+        this.case_id = case_id;
+        this.created_at = created_at;
+        this.type = type;
+        this.description = description;
+        this.pet_id = pet_id;
+    }
 
     public int getCase_id() {
         return case_id;

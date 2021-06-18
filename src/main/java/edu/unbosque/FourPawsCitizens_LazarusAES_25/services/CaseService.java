@@ -35,11 +35,10 @@ public class CaseService {
                 casePOJO.getType(),
                 casePOJO.getDescription());
         pet.get().addCases(aCase);
-        petRepository.save(pet.get());
+        String reply = petRepository.save(pet.get());
         entityManager.close();
         entityManagerFactory.close();
-
-        return "The caase was successfully created";
+        return reply;
 
     }
 
@@ -53,7 +52,7 @@ public class CaseService {
         entityManagerFactory.close();
 
         if(aCase.isPresent()){
-            return Optional.of(new CasePOJO(aCase.get().getCase_id(),aCase.get().getCreated_at(),aCase.get().getType(),aCase.get().getDescription(),aCase.get().getPet_id().getPet_id()));
+            return Optional.of(new CasePOJO(aCase.get().getCreated_at(),aCase.get().getType(),aCase.get().getDescription()));
         }
         return Optional.empty();
     }
@@ -68,7 +67,7 @@ public class CaseService {
 
         List<CasePOJO> casePOJOS = new ArrayList<>();
         for(Case cas : cases){
-            casePOJOS.add(new CasePOJO(cas.getCase_id(),cas.getCreated_at(),cas.getType(),cas.getDescription(),cas.getPet_id().getPet_id()));
+            casePOJOS.add(new CasePOJO(cas.getCreated_at(),cas.getType(),cas.getDescription()));
         }
         return casePOJOS;
     }

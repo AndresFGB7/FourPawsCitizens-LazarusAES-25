@@ -25,7 +25,7 @@ public class Case {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "pet_id")
+    @JoinColumn(name = "pet_id",nullable = false)
     private Pet pet;
 
     /**

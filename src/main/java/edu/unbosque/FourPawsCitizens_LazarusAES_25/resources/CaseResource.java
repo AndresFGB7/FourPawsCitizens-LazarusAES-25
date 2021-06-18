@@ -38,11 +38,9 @@ public class CaseResource {
         for (CasePOJO pojo : casePOJOS){
             if(pojo.getPet_id() == pet_id){
                 cases.add(new CasePOJO(
-                        pojo.getCase_id(),
                         pojo.getCreated_at(),
                         pojo.getType(),
-                        pojo.getDescription(),
-                        pojo.getPet_id()
+                        pojo.getDescription()
                 ));
             }
         }
