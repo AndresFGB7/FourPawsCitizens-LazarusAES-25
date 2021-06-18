@@ -50,20 +50,20 @@ public class OfficialResource {
                 status(Response.Status.CONFLICT)
                 .build();
     }
-
+    @Logged
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response totalOfficials() {
         List<OfficialPOJO> officialPOJOS = new OfficialService().listOfficial();
         return Response.ok().entity(officialPOJOS).build();
     }
-    @Logged
+/*
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("{password}")
-    public Response getOfficial(@PathParam("username") String username,@PathParam("password") String password){
+
+    public Response getOfficial(@PathParam("username") String username){
         List<OfficialPOJO> officialPOJOS = new OfficialService().getOfficial(username);
-        OfficialPOJO us = null;
+        officialPOJOS us = null;
         for (OfficialPOJO off: officialPOJOS) {
              us = new OfficialPOJO(off.getUsername(), off.getPassword(), off.getEmail(), off.getRole(), off.getName());
         }
@@ -77,6 +77,9 @@ public class OfficialResource {
             return Response.ok().entity("Wrong password").build();
         }
     }
+
+     */
+    @Logged
     @GET
     @Path("getOwners")
     @Produces(MediaType.APPLICATION_JSON)
@@ -84,6 +87,8 @@ public class OfficialResource {
         List<OwnerPOJO> ownerPOJO = new OwnerService().listOwners();
         return Response.ok().entity(ownerPOJO).build();
     }
+
+    @Logged
     @GET
     @Path("getPets")
     @Produces(MediaType.APPLICATION_JSON)

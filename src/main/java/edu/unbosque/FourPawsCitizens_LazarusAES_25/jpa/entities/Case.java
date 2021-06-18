@@ -3,7 +3,7 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Case")
+@Table(name = "PetCase")
 @NamedQueries({
         @NamedQuery(name = "Case.findById",
                 query = "SELECT b FROM Case b WHERE b.case_id = :case_id"),

@@ -2,6 +2,7 @@ package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources;
 
 
 
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.filters.Logged;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.PetPOJO;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.services.PetService;
 
@@ -54,7 +55,7 @@ public class PetResource {
 
 
 
-
+    @Logged
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{pet_id}/visitsCasesAll")

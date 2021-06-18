@@ -1,5 +1,6 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.resources;
 
+import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.filters.Logged;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.CasePOJO;
 import edu.unbosque.FourPawsCitizens_LazarusAES_25.services.CaseService;
 
@@ -22,7 +23,7 @@ public class CaseResource {
                 .entity(reply)
                 .build();
     }
-
+    @Logged
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response totalCases(@PathParam("pet_id") Integer pet_id) {
