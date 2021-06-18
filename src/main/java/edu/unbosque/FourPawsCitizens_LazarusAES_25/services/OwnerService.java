@@ -25,7 +25,7 @@ public class OwnerService {
 
         ownerRepository = new OwnerRepositoryImpl(entityManager);
 
-        Owner owner = new Owner(
+        Owner owner = new Owner(ownerPOJO.getPersonId(),
                 ownerPOJO.getUsername(),
                 ownerPOJO.getPassword(),
                 ownerPOJO.getEmail(),
@@ -55,12 +55,11 @@ public class OwnerService {
 
         List<OwnerPOJO> ownerPOJOS = new ArrayList<>();
         for (Owner owner : owners) {
-            ownerPOJOS.add(new OwnerPOJO(
+            ownerPOJOS.add(new OwnerPOJO(owner.getPersonId(),
                     owner.getUsername(),
                     owner.getPassword(),
                     owner.getEmail(),
                     owner.getRole(),
-                    owner.getPersonId(),
                     owner.getName(),
                     owner.getAddress(),
                     owner.getNeighborhood()));
@@ -79,11 +78,11 @@ public class OwnerService {
 
         if (owner.isPresent()) {
             return Optional.of(new OwnerPOJO(
+                    owner.get().getPersonId(),
                     owner.get().getUsername(),
                     owner.get().getPassword(),
                     owner.get().getEmail(),
                     owner.get().getRole(),
-                    owner.get().getPersonId(),
                     owner.get().getName(),
                     owner.get().getAddress(),
                     owner.get().getNeighborhood()));

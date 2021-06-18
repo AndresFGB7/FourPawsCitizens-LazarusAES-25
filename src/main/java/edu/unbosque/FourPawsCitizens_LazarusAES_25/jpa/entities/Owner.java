@@ -1,6 +1,7 @@
 package edu.unbosque.FourPawsCitizens_LazarusAES_25.jpa.entities;
 
 import javax.persistence.*;
+import javax.ws.rs.core.Application;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +18,8 @@ import java.util.List;
  *  Class for Owner Users extends UserAppPOJO
  */
 public class Owner extends UserApp {
-
-    @GeneratedValue
-    @Column(name = "person_id", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "person_id", unique = true)
     private Integer personId;
 
     @Column(name = "name", nullable = false)
@@ -49,7 +49,7 @@ public class Owner extends UserApp {
      * @param address: String
      * @param neighborhood: String
      */
-    public Owner(String username, String password, String email, String role, String name, String address, String neighborhood) {
+    public Owner(Integer personId,String username, String password, String email, String role, String name, String address, String neighborhood) {
         super(username, password, email, role);
         this.personId = personId;
         this.name = name;

@@ -13,7 +13,7 @@ public class VetPOJO {
    private  String name;
    private  String address;
    private  String neighborhood;
-   private String vetId;
+   private Integer vetId;
 
     public VetPOJO() {
     }
@@ -28,7 +28,7 @@ public class VetPOJO {
      * @param address: String
      * @param neighborhood: String
      */
-    public VetPOJO(String username, String password, String email, String role, String name, String address, String neighborhood, String vetId) {
+    public VetPOJO(String username, String password, String email, String role, String name, String address, String neighborhood, Integer vetId) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -98,11 +98,11 @@ public class VetPOJO {
         this.neighborhood = neighborhood;
     }
 
-    public String getVetId() {
+    public Integer getVetId() {
         return vetId;
     }
 
-    public void setVetId(String vetId) {
+    public void setVetId(Integer vetId) {
         this.vetId = vetId;
     }
 }

@@ -25,7 +25,7 @@ public class OwnerPOJO {
 
     }
 
-    public OwnerPOJO(String username, String password, String email, String role, Integer personId, String name, String address, String neighborhood) {
+    public OwnerPOJO(Integer personId,String username, String password, String email, String role, String name, String address, String neighborhood) {
         this.username = username;
         this.password = password;
         this.email = email;

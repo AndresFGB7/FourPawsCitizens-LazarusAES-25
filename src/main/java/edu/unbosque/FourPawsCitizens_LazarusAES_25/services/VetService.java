@@ -39,9 +39,9 @@ public class VetService {
         List<VetPOJO> vetPOJOS = new ArrayList<>();
         for (Vet vet : vets) {
             vetPOJOS.add(new VetPOJO(vet.getUsername(), vet.getPassword(), vet.getRole(),
-                    vet.getEmail(),vet.getVet_id(), vet.getName(),
+                    vet.getEmail(), vet.getName(),
                     vet.getAddress(),
-                    vet.getNeighborhood()));
+                    vet.getNeighborhood(),vet.getVet_id()));
         }
         return vetPOJOS;
     }
@@ -61,7 +61,7 @@ public class VetService {
         //Optional<UserApp> user = userAppRepository.findByUsername(vetPOJO.getUsername());
         //if (!user.isPresent()) return "The user does not exist";
 
-        Vet vet = new Vet(vetPOJO.getUsername(), vetPOJO.getPassword(), vetPOJO.getRole(),
+        Vet vet = new Vet(vetPOJO.getVetId(),vetPOJO.getUsername(), vetPOJO.getPassword(), vetPOJO.getRole(),
                 vetPOJO.getEmail(), vetPOJO.getName(),
                 vetPOJO.getAddress(),
                 vetPOJO.getNeighborhood());

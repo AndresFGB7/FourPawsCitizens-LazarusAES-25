@@ -19,8 +19,8 @@ import java.util.List;
 public class Vet extends UserApp{
 
     @GeneratedValue
-    @Column(name = "vet_id", nullable = false)
-    private String vet_id;
+    @Column(name = "vet_id")
+    private Integer vet_id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -51,7 +51,7 @@ public class Vet extends UserApp{
      * @param address: String
      * @param neighborhood: String
      */
-    public Vet(String username, String password, String email, String role, String name, String address, String neighborhood) {
+    public Vet(Integer vet_id,String username, String password, String email, String role, String name, String address, String neighborhood) {
         super(username, password, email, role);
         this.vet_id = vet_id;
         this.name = name;
@@ -59,11 +59,11 @@ public class Vet extends UserApp{
         this.neighborhood = neighborhood;
     }
 
-    public String getVet_id() {
+    public Integer getVet_id() {
         return vet_id;
     }
 
-    public void setVet_id(String vet_id) {
+    public void setVet_id(Integer vet_id) {
         this.vet_id = vet_id;
     }
 
