@@ -16,5 +16,5 @@ public interface OwnerRepository {
 
     String deleteByUsername(String username);
 
-    String editOwner (String username, String password, String email, Long personId, String name, String adress,String neighborhood);
+    String editOwner (String username, String password, String email, Integer personId, String name, String adress,String neighborhood);
 }

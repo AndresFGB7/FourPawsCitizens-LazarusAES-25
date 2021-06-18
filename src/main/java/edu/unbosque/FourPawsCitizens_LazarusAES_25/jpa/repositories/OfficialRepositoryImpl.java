@@ -31,4 +31,10 @@ public class OfficialRepositoryImpl implements OfficialRepository{
     public List<Official> listAll() {
         return entityManager.createQuery("from Official").getResultList();
     }
+
+    @Override
+    public List<Official> getByUsername(String username) {
+        return entityManager.createQuery("SELECT o FROM Official o WHERE o.username LIKE :userParam")
+                .setParameter("userParam", username).getResultList();
+    }
 }

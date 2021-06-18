@@ -11,4 +11,6 @@ public interface OfficialRepository {
 
     List<Official> listAll();
 
+    List<Official> getByUsername(String username);
+
 }

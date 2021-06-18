@@ -14,7 +14,7 @@ public interface PetRepository {
     List findAll(Integer petId);
 
     List<Pet> findAll();
-
+    List<Pet> findbyOwner(String username);
     String editPet(PetPOJO petPOJO);
     void deleteById(Integer id);
 

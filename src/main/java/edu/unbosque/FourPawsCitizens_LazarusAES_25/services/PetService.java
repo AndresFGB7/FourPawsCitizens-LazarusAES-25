@@ -10,6 +10,7 @@ import edu.unbosque.FourPawsCitizens_LazarusAES_25.resources.pojos.PetPOJO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -86,6 +87,22 @@ public class PetService<fin> {
         entityManagerFactory.close();
         return message;
         }
+    public List<PetPOJO> listPetsByOwner(String username) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
+        petRepository = new PetRepositoryImpl(entityManager);
+
+        List<Pet> pet = petRepository.findbyOwner(username);
+
+        entityManager.close();
+        entityManagerFactory.close();
+
+        List<PetPOJO> petPOJOS = new ArrayList<>();
+        for (Pet pet1 : pet) {
+            petPOJOS.add(new PetPOJO(pet1.getPet_id(),pet1.getMicroship(),pet1.getName(),pet1.getSpecies(),pet1.getRace(),pet1.getSize(),pet1.getSex(),pet1.getPicture(),pet1.getOwner().getPersonId()));
+        }
+        return petPOJOS;
+    }
 }
 

@@ -66,7 +66,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 
     @Override
     //Edit an Owner of the DataBase
-    public String editOwner(String username, String password, String email, Long personId, String name, String adress, String neighborhood) {
+    public String editOwner(String username, String password, String email, Integer personId, String name, String adress, String neighborhood) {
         Owner owner = entityManager.find(Owner.class, username);
         if (owner != null) {
             try {

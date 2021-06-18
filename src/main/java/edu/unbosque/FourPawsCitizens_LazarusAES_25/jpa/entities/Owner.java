@@ -20,7 +20,7 @@ public class Owner extends UserApp {
 
     @GeneratedValue
     @Column(name = "person_id", nullable = false, unique = true)
-    private Long personId;
+    private Integer personId;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -57,11 +57,11 @@ public class Owner extends UserApp {
         this.neighborhood = neighborhood;
     }
 
-    public Long getPersonId() {
+    public Integer getPersonId() {
         return personId;
     }
 
-    public void setPersonId(Long personId) {
+    public void setPersonId(Integer personId) {
         this.personId = personId;
     }
 

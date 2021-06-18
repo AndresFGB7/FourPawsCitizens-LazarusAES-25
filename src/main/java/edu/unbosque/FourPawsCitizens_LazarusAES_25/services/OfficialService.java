@@ -59,6 +59,29 @@ public class OfficialService {
         }
         return officialPOJOS;
     }
+    public List<OfficialPOJO> getOfficial(String username) {
+
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        officialRepository = new OfficialRepositoryImpl(entityManager);
+
+        List<Official> official = officialRepository.getByUsername(username);
+
+        entityManager.close();
+        entityManagerFactory.close();
+
+        List<OfficialPOJO> officialPOJOS = new ArrayList<>();
+        for (Official official1 : official) {
+            officialPOJOS.add(new OfficialPOJO(
+                    official1.getUsername(),
+                    official1.getPassword(),
+                    official1.getEmail(),
+                    official1.getRole(),
+                    official1.getName()));
+        }
+        return officialPOJOS;
+    }
 
 
 }

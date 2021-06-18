@@ -26,7 +26,11 @@ public class PetRepositoryImpl implements PetRepository{
             return "Ha ocurrido un error al registrar la mascota!";
         }
     }
-
+    @Override
+    public List<Pet> findbyOwner(String username) {
+        return entityManager.createQuery("SELECT p FROM Pet p WHERE p.owner.username LIKE :userParam")
+                .setParameter("userParam", username).getResultList();
+    }
     @Override
     public Optional<Pet> findById(Integer id) {
         Pet pet = entityManager.find(Pet.class, id);

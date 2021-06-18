@@ -12,7 +12,7 @@ public class OwnerPOJO {
 
     private String role;
 
-    private Long personId;
+    private Integer personId;
 
     private String name;
 
@@ -25,7 +25,7 @@ public class OwnerPOJO {
 
     }
 
-    public OwnerPOJO(String username, String password, String email, String role, Long personId, String name, String address, String neighborhood) {
+    public OwnerPOJO(String username, String password, String email, String role, Integer personId, String name, String address, String neighborhood) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -68,11 +68,11 @@ public class OwnerPOJO {
         this.role = role;
     }
 
-    public Long getPersonId() {
+    public Integer getPersonId() {
         return personId;
     }
 
-    public void setPersonId(Long personId) {
+    public void setPersonId(Integer personId) {
         this.personId = personId;
     }
 
