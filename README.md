@@ -20,7 +20,7 @@ Este proyecto se baso principañmente en la arquitectura de programación tipo R
 - CSS
 
 # Integrantes 👨 👩
-- Cristian Sanchez
+- Cristian Sanchez M.
 - Paula Anaya
 - Esteban Cardenas
 - Andres Galvis
