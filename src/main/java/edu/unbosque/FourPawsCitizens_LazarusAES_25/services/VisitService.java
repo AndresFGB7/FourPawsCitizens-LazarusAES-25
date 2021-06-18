@@ -37,14 +37,14 @@ public class VisitService {
         if (petO.isEmpty()) return "No existe esa identificación de mascota";
 
         // Creating an optional vet object and find the id of the vet in the visit's pojo
-        Optional<Vet> vetO = vetRepository.findByUserName(visitPOJO.getVet_id());
+        Optional<Vet> vetO = vetRepository.findById(visitPOJO.getVet_id());
 
         //If the id doesn't exist return false
         if (!vetO.isPresent()) return "No existe esa veterinaria";
 
         Pet pet = petRepository.findById(visitPOJO.getPet_id()).get();
 
-        Vet vet = vetRepository.findByUserName(visitPOJO.getVet_id()).get();
+        Vet vet = vetRepository.findById(visitPOJO.getVet_id()).get();
 
         //Validating the format of the date, passing date of string to date
 

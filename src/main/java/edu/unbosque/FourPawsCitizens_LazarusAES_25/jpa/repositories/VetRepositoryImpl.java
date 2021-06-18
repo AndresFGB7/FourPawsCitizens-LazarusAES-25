@@ -44,6 +44,12 @@ public class VetRepositoryImpl implements VetRepository {
         return vet != null ? Optional.of(vet) : Optional.empty();
     }
 
+    @Override
+    public Optional<Vet> findById(Integer vetId) {
+        Vet vet = entityManager.find(Vet.class, vetId);
+        return vet != null ? Optional.of(vet) : Optional.empty();
+    }
+
     /**
      * Find all the Vets
      *
@@ -85,7 +91,7 @@ public class VetRepositoryImpl implements VetRepository {
 
 
     @Override
-    public String editVet(String username, String password, String email, String role, String vetId, String name, String address, String neighborhood) {
+    public String editVet(String username, String password, String email, String role, Integer vetId, String name, String address, String neighborhood) {
         Vet vet = entityManager.find(Vet.class, username);
         if (vet != null) {
             try {

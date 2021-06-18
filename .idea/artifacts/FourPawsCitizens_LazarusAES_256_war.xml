@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="FourPawsCitizens-LazarusAES-25:war">
+  <artifact type="war" name="FourPawsCitizens-LazarusAES-256:war">
     <output-path>$PROJECT_DIR$/target</output-path>
     <properties id="maven-jee-properties">
       <options>

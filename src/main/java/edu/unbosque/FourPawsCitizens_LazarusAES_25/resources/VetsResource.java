@@ -66,7 +66,6 @@ public class VetsResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createVisit(@PathParam("username") String username,@PathParam("pet_ID") Integer pet_ID, VisitPOJO visitPOJO){
-    visitPOJO.setVet_id(username);
     visitPOJO.setPet_id(pet_ID);
     String reply = new VisitService().saveVisit(visitPOJO);
         return Response.

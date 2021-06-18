@@ -97,7 +97,7 @@ public class VetService {
      * @param address:      String
      * @param neighborhood: String
      */
-    public String editVet(String username, String password, String email,String role, String vetId, String name, String address, String neighborhood) {
+    public String editVet(String username, String password, String email,String role, Integer vetId, String name, String address, String neighborhood) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("LazarusAES-256");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
